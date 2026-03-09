@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教學卓越核心架構圖 | 陽明跨域探究學習模式</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#3B82F6',   // 湖水藍/亮藍
+                            orange: '#FB923C', // 亮橘
+                            yellow: '#FACC15', // 亮黃
+                            green: '#34D399',  // 亮綠/草綠
+                            pink: '#F472B6',   // 粉色
+                            teal: '#2DD4BF',   // 湖水綠
+                            coral: '#FF7F50',  // 珊瑚紅
+                            purple: '#A78BFA'  // 淺紫
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(251, 146, 60, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8FAFC; 
+            overflow-x: hidden;
+        }
+
+        /* 滾動淡入動畫基礎設定 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 浮動動畫 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 5s ease-in-out infinite 1s;
+        }
+
+        /* 背景流動幾何 */
+        .bg-blob {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* 脈衝光圈 */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .pulse-effect {
+            animation: pulse-ring 3s infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased relative">
+
+    <!-- 背景裝飾 -->
+    <div class="bg-blob bg-brand-yellow w-96 h-96 rounded-full top-0 left-[-10%]"></div>
+    <div class="bg-blob bg-brand-pink w-96 h-96 rounded-full top-[20%] right-[-10%]"></div>
+    <div class="bg-blob bg-brand-teal w-80 h-80 rounded-full top-[50%] left-[-5%]"></div>
+    <div class="bg-blob bg-brand-purple w-[30rem] h-[30rem] rounded-full bottom-[-10%] right-[-10%]"></div>
+
+    <!-- 1. 頂部主視覺 Hero 區 -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-10">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block mb-6 px-6 py-2 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 animate-float">
+                <span class="bg-gradient-to-r from-brand-orange to-brand-pink gradient-text font-bold tracking-wider">
+                    Yangming Inquiry-based Interdisciplinary Learning Model
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight">
+                <span class="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-pink gradient-text drop-shadow-sm">
+                    陽明跨域探究學習模式
+                </span>
+            </h1>
+            
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-700 mb-8 tracking-wide">
+                教學卓越核心架構
+            </h2>
+            
+            <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed mb-12 bg-white/40 p-6 rounded-3xl backdrop-blur-sm border border-white/60 shadow-soft">
+                以探究歷程為核心，串聯跨域專題、教學支持與學習成長
+            </p>
+
+            <div class="flex justify-center mt-12 animate-bounce">
+                <i data-lucide="chevron-down" class="w-10 h-10 text-brand-blue opacity-50"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. 核心教學理念區 (移回前方) -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-coral font-bold tracking-widest text-sm mb-2 block">PHILOSOPHY</span>
+                <h3 class="text-3xl font-bold inline-block relative">
+                    核心教學理念
+                    <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-1/2 h-1.5 bg-brand-yellow rounded-full"></div>
+                </h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- 理念 1 -->
+                <div class="bg-white rounded-[2rem] p-10 shadow-soft hover:-translate-y-3 transition-transform duration-300 border-t-4 border-brand-coral reveal">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-coral/10 flex items-center justify-center mb-6">
+                        <i data-lucide="compass" class="w-8 h-8 text-brand-coral"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-800 mb-4">探究歷程導向</h4>
+                    <p class="text-slate-500 leading-relaxed">引導學生從好奇心出發，主動發掘知識，將學習主導權交還給學生，培養終身學習的動能。</p>
+                </div>
+                <!-- 理念 2 -->
+                <div class="bg-white rounded-[2rem] p-10 shadow-soft hover:-translate-y-3 transition-transform duration-300 border-t-4 border-brand-teal reveal" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center mb-6">
+                        <i data-lucide="puzzle" class="w-8 h-8 text-brand-teal"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-800 mb-4">問題解決導向</h4>
+                    <p class="text-slate-500 leading-relaxed">設計真實情境任務，鼓勵學生運用跨域知識，提出創新解方，實踐學以致用。</p>
+                </div>
+                <!-- 理念 3 -->
+                <div class="bg-white rounded-[2rem] p-10 shadow-soft hover:-translate-y-3 transition-transform duration-300 border-t-4 border-brand-yellow reveal" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-yellow/20 flex items-center justify-center mb-6">
+                        <i data-lucide="sprout" class="w-8 h-8 text-brand-yellow"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-800 mb-4">素養導向學習</h4>
+                    <p class="text-slate-500 leading-relaxed">超越學科知識的記憶，著重態度、技能與價值的內化，培養適應未來變局的全人素養。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 探究學習歷程 -->
+    <section class="py-24 relative z-10 bg-white/60 backdrop-blur-md my-10 border-y border-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-brand-blue font-bold tracking-widest text-sm mb-2 block">CORE PROCESS</span>
+                <h3 class="text-4xl font-bold inline-block relative bg-gradient-to-r from-brand-blue to-brand-teal gradient-text">
+                    探究學習歷程
+                </h3>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto reveal">
+                <!-- 背景連接線 (桌機版) -->
+                <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-2 bg-slate-100 rounded-full -translate-y-1/2">
+                    <div class="h-full bg-gradient-to-r from-brand-blue via-brand-teal to-brand-green rounded-full opacity-50"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-blue to-cyan-400 p-1 shadow-lg group-hover:scale-110 transition-transform duration-300 z-10">
+                            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                                <i data-lucide="search" class="w-8 h-8 text-brand-blue"></i>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center w-full bg-white p-6 rounded-3xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-brand-blue mb-2">問題覺察</h4>
+                            <p class="text-sm text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto">從生活情境中發現現象，提出具探究價值的核心問題。</p>
+                        </div>
+                        <div class="md:hidden w-1 h-10 bg-gradient-to-b from-brand-blue to-brand-teal my-2"></div>
+                    </div>
+
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-teal to-emerald-400 p-1 shadow-lg group-hover:scale-110 transition-transform duration-300 z-10">
+                            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                                <i data-lucide="layout-template" class="w-8 h-8 text-brand-teal"></i>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center w-full bg-white p-6 rounded-3xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-brand-teal mb-2">方法建構</h4>
+                            <p class="text-sm text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto">規劃研究步驟，選擇適當的工具與跨域理論基礎。</p>
+                        </div>
+                        <div class="md:hidden w-1 h-10 bg-gradient-to-b from-brand-teal to-brand-orange my-2"></div>
+                    </div>
+
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-orange to-brand-yellow p-1 shadow-lg group-hover:scale-110 transition-transform duration-300 z-10">
+                            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                                <i data-lucide="hammer" class="w-8 h-8 text-brand-orange"></i>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center w-full bg-white p-6 rounded-3xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-brand-orange mb-2">探究實作</h4>
+                            <p class="text-sm text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto">執行計畫，收集數據或產出作品，並進行分析驗證。</p>
+                        </div>
+                        <div class="md:hidden w-1 h-10 bg-gradient-to-b from-brand-orange to-brand-pink my-2"></div>
+                    </div>
+
+                    <div class="group relative flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-pink to-brand-coral p-1 shadow-lg group-hover:scale-110 transition-transform duration-300 z-10">
+                            <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                                <i data-lucide="refresh-cw" class="w-8 h-8 text-brand-pink"></i>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center w-full bg-white p-6 rounded-3xl shadow-sm border border-slate-100 group-hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-brand-pink mb-2">反思修正</h4>
+                            <p class="text-sm text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto">評估成效，檢討歷程中的限制，並提出優化或新問題。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 跨領域專題學習實踐區 -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-purple font-bold tracking-widest text-sm mb-2 block">CURRICULUM</span>
+                <h3 class="text-3xl font-bold inline-block relative">
+                    跨領域專題課程實踐
+                    <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-1/2 h-1.5 bg-brand-pink rounded-full"></div>
+                </h3>
+                <p class="mt-6 text-slate-500">點擊卡片展開模組說明</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto reveal">
+                <!-- 模組 1 -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-soft cursor-pointer border border-slate-50 hover:shadow-glow transition-all duration-300 module-card" onclick="toggleCard(this)">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center text-white shadow-md">
+                                <i data-lucide="book-open" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-800">文學專題</h4>
+                        </div>
+                        <i data-lucide="plus-circle" class="w-8 h-8 text-slate-300 transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="card-content overflow-hidden max-h-0 transition-all duration-500 opacity-0">
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <p class="text-brand-purple font-medium bg-brand-purple/10 inline-block px-4 py-1 rounded-full text-sm mb-2">文本探究與觀點論證</p>
+                            <p class="text-slate-600 leading-relaxed">透過深度閱讀與跨時代文本比對，引導學生建構批判性論述，並透過多元形式呈現個人觀點與文化關懷。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模組 2 -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-soft cursor-pointer border border-slate-50 hover:shadow-glow transition-all duration-300 module-card" onclick="toggleCard(this)">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-blue to-cyan-400 flex items-center justify-center text-white shadow-md">
+                                <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-800">大數據專題</h4>
+                        </div>
+                        <i data-lucide="plus-circle" class="w-8 h-8 text-slate-300 transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="card-content overflow-hidden max-h-0 transition-all duration-500 opacity-0">
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <p class="text-brand-blue font-medium bg-brand-blue/10 inline-block px-4 py-1 rounded-full text-sm mb-2">數據分析與模型建構</p>
+                            <p class="text-slate-600 leading-relaxed">培養學生收集、清理與視覺化數據的能力，運用統計思維發掘隱藏在海量資料背後的趨勢與真相。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模組 3 -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-soft cursor-pointer border border-slate-50 hover:shadow-glow transition-all duration-300 module-card" onclick="toggleCard(this)">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-green to-brand-teal flex items-center justify-center text-white shadow-md">
+                                <i data-lucide="microscope" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-800">自然科學專題</h4>
+                        </div>
+                        <i data-lucide="plus-circle" class="w-8 h-8 text-slate-300 transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="card-content overflow-hidden max-h-0 transition-all duration-500 opacity-0">
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <p class="text-brand-green font-medium bg-brand-green/10 inline-block px-4 py-1 rounded-full text-sm mb-2">實驗設計與科學驗證</p>
+                            <p class="text-slate-600 leading-relaxed">強調動手做與科學探究精神，從假設擬定到變因控制，經由嚴謹的實驗歷程驗證自然界法則。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模組 4 -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-soft cursor-pointer border border-slate-50 hover:shadow-glow transition-all duration-300 module-card" onclick="toggleCard(this)">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-yellow flex items-center justify-center text-white shadow-md">
+                                <i data-lucide="bot" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-800">資訊／機器人專題</h4>
+                        </div>
+                        <i data-lucide="plus-circle" class="w-8 h-8 text-slate-300 transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="card-content overflow-hidden max-h-0 transition-all duration-500 opacity-0">
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <p class="text-brand-orange font-medium bg-brand-orange/10 inline-block px-4 py-1 rounded-full text-sm mb-2">程式控制與系統整合</p>
+                            <p class="text-slate-600 leading-relaxed">結合軟硬體開發，設計自動化機制或智能機器人，應用邏輯運算思維解決生活中的具體難題。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 學生整合能力與影響 -->
+    <section class="py-24 relative z-10 overflow-hidden bg-gradient-to-b from-transparent to-white/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-pink font-bold tracking-widest text-sm mb-2 block">STUDENT EMPOWERMENT</span>
+                <h3 class="text-3xl font-bold inline-block relative">
+                    學生成長與影響
+                </h3>
+            </div>
+
+            <!-- 學生能力星系圖 -->
+            <div class="relative max-w-4xl mx-auto h-[500px] flex items-center justify-center reveal mb-16">
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-full bg-gradient-to-t from-brand-yellow/20 to-transparent blur-3xl -z-10 rounded-full"></div>
+
+                <div class="relative z-20 w-32 h-32 bg-white rounded-full shadow-xl flex flex-col items-center justify-center border-4 border-brand-yellow pulse-effect">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-brand-orange mb-1"></i>
+                    <span class="font-bold text-slate-800 text-sm">核心素養</span>
+                </div>
+
+                <!-- 周圍能力泡泡 -->
+                <div class="absolute top-[10%] left-[20%] w-28 h-28 bg-gradient-to-br from-brand-blue to-cyan-400 rounded-full flex flex-col items-center justify-center text-white shadow-lg animate-float">
+                    <i data-lucide="brain-circuit" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm">批判思考</span>
+                </div>
+                <div class="absolute top-[10%] right-[20%] w-28 h-28 bg-gradient-to-br from-brand-teal to-emerald-400 rounded-full flex flex-col items-center justify-center text-white shadow-lg animate-float-delayed">
+                    <i data-lucide="lightbulb" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm">問題解決</span>
+                </div>
+                <div class="absolute bottom-[20%] left-[15%] w-28 h-28 bg-gradient-to-br from-brand-pink to-rose-400 rounded-full flex flex-col items-center justify-center text-white shadow-lg animate-float" style="animation-delay: 0.5s;">
+                    <i data-lucide="palette" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm">創作表達</span>
+                </div>
+                <div class="absolute bottom-[20%] right-[15%] w-28 h-28 bg-gradient-to-br from-brand-purple to-indigo-400 rounded-full flex flex-col items-center justify-center text-white shadow-lg animate-float" style="animation-delay: 1.5s;">
+                    <i data-lucide="users" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm">合作學習</span>
+                </div>
+                
+                <!-- 連接線 SVG -->
+                <svg class="absolute inset-0 w-full h-full -z-10 opacity-30 pointer-events-none" viewBox="0 0 800 500">
+                    <path d="M400,250 L240,110" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5"/>
+                    <path d="M400,250 L560,110" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5"/>
+                    <path d="M400,250 L180,350" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5"/>
+                    <path d="M400,250 L620,350" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5"/>
+                </svg>
+            </div>
+
+            <!-- 教學影響擴散卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full max-w-5xl mx-auto relative z-10 reveal">
+                <div class="bg-white p-6 rounded-3xl shadow-soft text-center border-t-4 border-brand-green hover:-translate-y-2 transition-transform">
+                    <div class="bg-brand-green/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="mic" class="w-6 h-6 text-brand-green"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">學生成果發表</h4>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-soft text-center border-t-4 border-brand-green hover:-translate-y-2 transition-transform">
+                    <div class="bg-brand-green/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="network" class="w-6 h-6 text-brand-green"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">校內跨域課程</h4>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-soft text-center border-t-4 border-brand-green hover:-translate-y-2 transition-transform">
+                    <div class="bg-brand-green/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="share-2" class="w-6 h-6 text-brand-green"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">校外分享交流</h4>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-soft text-center border-t-4 border-brand-green hover:-translate-y-2 transition-transform">
+                    <div class="bg-brand-green/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="arrow-down-circle" class="w-6 h-6 text-brand-green"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">國中向下扎根</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 教學支持系統區 -->
+    <section class="py-16 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto bg-gradient-to-r from-slate-800 to-slate-700 rounded-[3rem] p-10 md:p-14 shadow-2xl relative overflow-hidden reveal">
+                <!-- 裝飾底紋 -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <h3 class="text-3xl font-bold text-white tracking-wide">
+                        教學支持系統
+                    </h3>
+                    <p class="text-slate-300 mt-2">穩固的後盾，成就學生的每一次探究</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 relative z-10">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-colors">
+                        <i data-lucide="users-2" class="w-10 h-10 text-brand-yellow mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">教師社群共備</h4>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-colors">
+                        <i data-lucide="pen-tool" class="w-10 h-10 text-brand-teal mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">探究課程設計</h4>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-colors">
+                        <i data-lucide="clipboard-check" class="w-10 h-10 text-brand-pink mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">多元評量系統</h4>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/20 transition-colors">
+                        <i data-lucide="folder-search" class="w-10 h-10 text-brand-blue mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">歷程檔案分析</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. 總結：教學卓越核心教學架構圖 (豐富版/原位版) -->
+    <!-- ========================================== -->
+    <section class="py-24 relative z-10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-6xl mx-auto bg-white/80 backdrop-blur-xl rounded-[3rem] p-8 md:p-16 shadow-soft border border-white/60 relative overflow-hidden reveal">
+                
+                <div class="text-center mb-12 relative z-10">
+                    <span class="text-brand-purple font-bold tracking-widest text-sm mb-2 block uppercase">Master Architecture</span>
+                    <h3 class="text-4xl font-black text-slate-800 inline-block relative mb-4">
+                        教學卓越核心教學架構圖
+                        <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-brand-blue via-brand-pink to-brand-orange rounded-full"></div>
+                    </h3>
+                    <p class="text-slate-500 mt-4">總整四大維度，構築完善的跨域探究生態系</p>
+                </div>
+
+                <!-- 完整精緻版 架構圖 -->
+                <div class="flex flex-col items-center w-full relative z-10 space-y-6">
+                    
+                    <!-- 頂層：理念 -->
+                    <div class="w-full bg-slate-50 border border-slate-100 p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between shadow-sm">
+                        <div class="text-lg font-black text-brand-coral w-32 text-center md:text-left mb-4 md:mb-0">核心理念</div>
+                        <div class="flex-1 flex flex-wrap justify-center gap-4">
+                            <span class="px-5 py-2 bg-white rounded-full text-slate-700 font-bold shadow-sm border border-slate-100"><i data-lucide="compass" class="w-4 h-4 inline mr-2 text-brand-coral"></i>探究歷程導向</span>
+                            <span class="px-5 py-2 bg-white rounded-full text-slate-700 font-bold shadow-sm border border-slate-100"><i data-lucide="puzzle" class="w-4 h-4 inline mr-2 text-brand-teal"></i>問題解決導向</span>
+                            <span class="px-5 py-2 bg-white rounded-full text-slate-700 font-bold shadow-sm border border-slate-100"><i data-lucide="sprout" class="w-4 h-4 inline mr-2 text-brand-yellow"></i>素養導向學習</span>
+                        </div>
+                    </div>
+
+                    <div class="h-6 w-0.5 bg-slate-200"></div>
+
+                    <!-- 中層：實踐與支持 (雙軌) -->
+                    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 學習實踐軌 -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 p-6 rounded-3xl shadow-sm">
+                            <div class="text-center font-bold text-brand-blue mb-4">跨域探究學習實踐</div>
+                            <div class="flex flex-col gap-3">
+                                <div class="bg-white px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+                                    <span class="text-sm font-bold text-slate-600">問題覺察與建構</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                                    <span class="text-sm font-bold text-slate-600">探究實作與反思</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="bg-white/60 p-2 rounded-lg text-center text-xs font-bold text-slate-600 border border-white">文學專題</div>
+                                    <div class="bg-white/60 p-2 rounded-lg text-center text-xs font-bold text-slate-600 border border-white">大數據專題</div>
+                                    <div class="bg-white/60 p-2 rounded-lg text-center text-xs font-bold text-slate-600 border border-white">自然專題</div>
+                                    <div class="bg-white/60 p-2 rounded-lg text-center text-xs font-bold text-slate-600 border border-white">機器人專題</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 教學支持軌 -->
+                        <div class="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 p-6 rounded-3xl shadow-sm">
+                            <div class="text-center font-bold text-slate-700 mb-4">教師教學支持系統</div>
+                            <div class="grid grid-cols-2 gap-3 h-full">
+                                <div class="bg-white p-3 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+                                    <i data-lucide="users-2" class="w-5 h-5 text-brand-yellow mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-600">社群共備</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+                                    <i data-lucide="pen-tool" class="w-5 h-5 text-brand-teal mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-600">課程設計</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+                                    <i data-lucide="clipboard-check" class="w-5 h-5 text-brand-pink mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-600">多元評量</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+                                    <i data-lucide="folder-search" class="w-5 h-5 text-brand-blue mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-600">歷程分析</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-6 w-0.5 bg-slate-200"></div>
+
+                    <!-- 底層：產出與影響 -->
+                    <div class="w-full bg-gradient-to-r from-brand-pink/10 to-brand-orange/10 border border-brand-pink/20 p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between shadow-sm">
+                        <div class="text-lg font-black text-brand-pink w-32 text-center md:text-left mb-4 md:mb-0">成效與擴散</div>
+                        <div class="flex-1 flex flex-col gap-3 w-full">
+                            <!-- 學生能力 -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-4 py-1.5 bg-white rounded-lg text-sm font-bold text-brand-blue shadow-sm">批判思考</span>
+                                <span class="px-4 py-1.5 bg-white rounded-lg text-sm font-bold text-brand-teal shadow-sm">問題解決</span>
+                                <span class="px-4 py-1.5 bg-white rounded-lg text-sm font-bold text-brand-purple shadow-sm">合作學習</span>
+                            </div>
+                            <!-- 擴散影響 -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="text-xs font-bold text-slate-500 bg-white/50 px-3 py-1 rounded-full"><i data-lucide="check-circle-2" class="w-3 h-3 inline mr-1 text-brand-green"></i>成果發表</span>
+                                <span class="text-xs font-bold text-slate-500 bg-white/50 px-3 py-1 rounded-full"><i data-lucide="check-circle-2" class="w-3 h-3 inline mr-1 text-brand-green"></i>校內課程</span>
+                                <span class="text-xs font-bold text-slate-500 bg-white/50 px-3 py-1 rounded-full"><i data-lucide="check-circle-2" class="w-3 h-3 inline mr-1 text-brand-green"></i>校外分享</span>
+                                <span class="text-xs font-bold text-slate-500 bg-white/50 px-3 py-1 rounded-full"><i data-lucide="check-circle-2" class="w-3 h-3 inline mr-1 text-brand-green"></i>國中扎根</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-10 text-center text-slate-400 text-sm relative z-10">
+        <p>&copy; 陽明跨域探究學習模式 | 完整教學展示版</p>
+    </footer>
+
+    <!-- 互動腳本 -->
+    <script>
+        lucide.createIcons();
+
+        function toggleCard(card) {
+            const content = card.querySelector('.card-content');
+            const icon = card.querySelector('.toggle-icon');
+            const isExpanded = card.classList.contains('ring-4');
+            
+            if (isExpanded) {
+                card.classList.remove('ring-4', 'ring-brand-pink/20');
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('text-brand-pink');
+                icon.classList.add('text-slate-300');
+            } else {
+                card.classList.add('ring-4', 'ring-brand-pink/20');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = '1';
+                icon.style.transform = 'rotate(45deg)';
+                icon.classList.remove('text-slate-300');
+                icon.classList.add('text-brand-pink');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
+</body>
+</html>
+```
