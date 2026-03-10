@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全國教學卓越準備指南 - 黃春木老師的核心方向與注意事項</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        en: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        'edu-cyan': '#00b4d8',
+                        'edu-orange': '#ff9e00',
+                        'edu-yellow': '#ffea00',
+                        'edu-green': '#a7c957',
+                        'edu-red': '#ff6b6b',
+                        'edu-purple': '#cdb4db',
+                        'edu-peach': '#ffb5a7',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow-cyan': '0 0 20px rgba(0, 180, 216, 0.4)',
+                        'glow-yellow': '0 0 20px rgba(255, 234, 0, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Animations */
+        body { background-color: #fdfdfd; overflow-x: hidden; }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .float-slow { animation: float 6s ease-in-out infinite; }
+        .float-medium { animation: float 4s ease-in-out infinite; }
+        .float-fast { animation: float 3s ease-in-out infinite; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Accordion transition */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* arbitrary large value */
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Pattern Background */
+        .bg-dots {
+            background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased font-sans selection:bg-edu-yellow selection:text-slate-900">
+
+    <!-- 0. 加強版宣示 (隱藏在視覺中，但定調風格) -->
+    <!-- 這是一個高彩度、教育感、資訊整理感的互動網頁 -->
+
+    <!-- 1. Hero 主視覺區 -->
+    <header class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-cyan-50 via-purple-50 to-orange-50">
+        <!-- Background geometric shapes -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-edu-cyan rounded-full mix-blend-multiply filter blur-2xl opacity-40 float-slow"></div>
+        <div class="absolute top-40 right-20 w-48 h-48 bg-edu-yellow rounded-full mix-blend-multiply filter blur-2xl opacity-50 float-medium"></div>
+        <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-edu-purple rounded-full mix-blend-multiply filter blur-2xl opacity-40 float-fast"></div>
+        <div class="absolute -bottom-10 right-1/3 w-56 h-56 bg-edu-peach rounded-full mix-blend-multiply filter blur-2xl opacity-50 float-slow"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-10">
+            <div class="inline-block mb-4 px-6 py-2 bg-white rounded-full shadow-md text-edu-cyan font-bold tracking-widest text-sm border border-cyan-100 float-slow">
+                <i class="fa-solid fa-lightbulb mr-2 text-edu-yellow"></i> 卓越教學工作坊專用資訊圖表
+            </div>
+            <h2 class="font-en text-edu-purple text-xl md:text-2xl font-black tracking-wider uppercase mb-2">Teaching Excellence Preparation Guide</h2>
+            <h1 class="text-5xl md:text-7xl font-black text-slate-800 mb-6 leading-tight">
+                全國教學卓越<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-edu-cyan to-edu-purple">準備指南</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 font-bold mb-10 bg-white/60 inline-block px-8 py-3 rounded-2xl backdrop-blur-sm shadow-sm border border-white">
+                黃春木老師的核心方向與注意事項
+            </p>
+            
+            <div class="bg-gradient-to-r from-edu-orange to-edu-red p-[4px] rounded-3xl shadow-glow-yellow max-w-4xl mx-auto transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-white rounded-[20px] p-6 md:p-8 h-full">
+                    <p class="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
+                        <i class="fa-solid fa-quote-left text-edu-peach text-3xl mr-2 -mt-4 align-top"></i>
+                        教卓<span class="text-edu-red">不是比誰最炫</span>，<br class="md:hidden">
+                        而是比誰能說清楚<br>
+                        <span class="inline-block bg-edu-yellow/40 px-3 py-1 rounded-lg mt-2 mx-1 shadow-sm">課程故事</span>
+                        <span class="inline-block bg-edu-cyan/20 px-3 py-1 rounded-lg mt-2 mx-1 shadow-sm text-edu-cyan">學習證據</span>
+                        <span class="inline-block bg-edu-green/30 px-3 py-1 rounded-lg mt-2 mx-1 shadow-sm text-green-700">教學決策</span>
+                        <i class="fa-solid fa-quote-right text-edu-peach text-3xl ml-2 -mb-4 align-bottom"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-arrow-down text-2xl text-edu-cyan opacity-70"></i>
+        </div>
+    </header>
+
+    <!-- 2. 核心心法總覽區 -->
+    <section class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-4xl font-black text-slate-800 mb-4 inline-block relative">
+                    評審最在意的四件事
+                    <div class="absolute -bottom-3 left-0 w-full h-3 bg-edu-yellow -z-10 rounded-full opacity-60"></div>
+                </h2>
+                <p class="text-lg text-slate-500 font-medium">核心心法總覽，建構具說服力的專案論述</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="fade-in-section bg-white rounded-3xl p-8 shadow-soft border-t-8 border-edu-green hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-3xl text-edu-green mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-800">重要性</h3>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        課程在 108 課綱下解決了什麼問題？為什麼非做不可？
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="fade-in-section bg-white rounded-3xl p-8 shadow-soft border-t-8 border-edu-orange hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-3xl text-edu-orange mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-800">獨特性</h3>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        和別校相比，真正不同在哪裡？你們的不可取代性是什麼？
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="fade-in-section bg-white rounded-3xl p-8 shadow-soft border-t-8 border-edu-purple hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-3xl text-edu-purple mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-800">啟發性</h3>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        是否能成為其他學校參考的做法？具備擴散與引導價值。
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="fade-in-section bg-white rounded-3xl p-8 shadow-soft border-t-8 border-edu-cyan hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center text-3xl text-edu-cyan mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-800">永續性</h3>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        是否能長期存在，形成制度或文化，不會因特定人離開而消散？
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. QA 重點區 -->
+    <section class="py-20 bg-slate-50 bg-dots border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 fade-in-section">
+            <div class="text-center mb-12">
+                <span class="bg-edu-cyan text-white px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-4 inline-block shadow-md">常見盲點破解</span>
+                <h2 class="text-4xl font-black text-slate-800 mb-4">實戰 QA 關鍵問答</h2>
+                <p class="text-slate-600 font-medium">點擊展開，快速釐清準備方向與評審視角</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-orange text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q1</span>
+                            訪視時要不要做成果展？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-3">❌ 展覽<span class="text-edu-red font-bold">不是</span>必要。</p>
+                            <p class="text-slate-700 font-medium mb-3">✅ 真正重要的是：老師訪談、學生訪談、行政訪談、課程資料。</p>
+                            <ul class="list-disc pl-5 mb-4 text-slate-600 space-y-1">
+                                <li>資料要完整且快速找得到。</li>
+                                <li>紙本與雲端都要準備。</li>
+                            </ul>
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">訪視重點不是布置，而是資料系統化。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-cyan text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q2</span>
+                            教學如何呈現？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-4">評審會先看學生作品，但<span class="text-edu-cyan font-bold">真正重要的是老師怎麼回饋學生</span>。</p>
+                            
+                            <div class="bg-white p-4 rounded-xl shadow-inner mb-4 flex flex-col space-y-2 relative border border-slate-100">
+                                <div class="flex items-center text-slate-400 text-sm"><i class="fa-regular fa-circle mr-2"></i> 弱：空白學習單</div>
+                                <div class="flex items-center text-slate-500 text-sm"><i class="fa-regular fa-circle mr-2"></i> 偏弱：學生寫完但沒回饋</div>
+                                <div class="flex items-center text-edu-orange text-sm font-bold"><i class="fa-solid fa-circle-half-stroke mr-2"></i> 中：只有 A / Good / Nice</div>
+                                <div class="flex items-center text-edu-green text-base font-bold"><i class="fa-solid fa-check-circle mr-2"></i> 強：有具體評語</div>
+                                <div class="flex items-center text-edu-red text-lg font-black bg-rose-50 p-2 rounded-lg mt-1 border border-rose-100">
+                                    <i class="fa-solid fa-crown mr-2 text-edu-yellow"></i> 最佳：全班統整回饋 + 評量分析 + 修正教學
+                                </div>
+                            </div>
+                            
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">評審想看的是教學決策，不只是學生作品。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-green text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q3</span>
+                            SEL (社會情緒學習) 要不要做亮點？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-3">可以！但<span class="text-edu-red font-bold">不能只是口號</span>，必須有具體呈現：</p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+                                <div class="bg-blue-50 text-blue-700 p-3 rounded-xl text-center font-bold text-sm">
+                                    <i class="fa-solid fa-wrench block text-xl mb-1"></i>工具<br><span class="text-xs font-normal">Rubrics/問卷/觀察</span>
+                                </div>
+                                <div class="bg-indigo-50 text-indigo-700 p-3 rounded-xl text-center font-bold text-sm">
+                                    <i class="fa-solid fa-folder-open block text-xl mb-1"></i>資料<br><span class="text-xs font-normal">歷程/合作/自管</span>
+                                </div>
+                                <div class="bg-purple-50 text-purple-700 p-3 rounded-xl text-center font-bold text-sm">
+                                    <i class="fa-solid fa-chart-pie block text-xl mb-1"></i>分析<br><span class="text-xs font-normal">能力提升</span>
+                                </div>
+                                <div class="bg-pink-50 text-pink-700 p-3 rounded-xl text-center font-bold text-sm">
+                                    <i class="fa-solid fa-magnifying-glass-chart block text-xl mb-1"></i>證據<br><span class="text-xs font-normal">支持課程修正</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">SEL 要寫成「工具 → 資料 → 分析 → 證據」。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-purple text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q4</span>
+                            成果能不能和別校比較？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-3 text-edu-red font-bold text-lg"><i class="fa-solid fa-ban mr-2"></i>不建議！</p>
+                            <p class="text-slate-700 font-medium mb-4">因為各學校條件不同，最好的比較對象是<span class="bg-yellow-200 px-2 rounded">自己跟自己比</span>。</p>
+                            
+                            <div class="flex items-center justify-center space-x-4 mb-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                                <div class="text-center">
+                                    <div class="text-slate-400 font-bold mb-1">去年</div>
+                                    <div class="w-16 h-10 bg-slate-200 rounded mx-auto"></div>
+                                </div>
+                                <div class="text-edu-green text-2xl font-black"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                                <div class="text-center">
+                                    <div class="text-edu-cyan font-bold mb-1">今年</div>
+                                    <div class="w-16 h-16 bg-edu-cyan rounded mx-auto relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center text-slate-600 font-medium text-sm mb-4">呈現成果提升與學習成長</p>
+
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">不要寫比別校好，要寫逐年變好。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-peach text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q5</span>
+                            專題很多學校都有，特色在哪？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-3">你們最大亮點是：<span class="text-edu-red font-black text-xl bg-rose-100 px-2 py-1 rounded-lg">兩年專題</span></p>
+                            <p class="text-slate-600 text-sm mb-4">多數學校是一學期或一學年，你們必須說清楚：</p>
+                            
+                            <ul class="space-y-3 mb-5">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-question text-edu-cyan mt-1 mr-3"></i>
+                                    <span class="font-bold text-slate-700">為什麼做兩年？</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-pen-ruler text-edu-orange mt-1 mr-3"></i>
+                                    <span class="font-bold text-slate-700">如何設計兩年？</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-trophy text-edu-yellow mt-1 mr-3"></i>
+                                    <span class="font-bold text-slate-700">兩年帶來什麼學習成效？</span>
+                                </li>
+                            </ul>
+
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">兩年專題是最大特色，深耕才是王道。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <div class="accordion-header p-6 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-edu-red text-white flex items-center justify-center text-sm mr-3 flex-shrink-0">Q6</span>
+                            SEL + 自主學習 + 專題被說硬湊怎麼辦？
+                        </h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400 accordion-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="accordion-content px-6 bg-slate-50/50">
+                        <div class="pb-6 pt-2">
+                            <p class="text-slate-700 font-medium mb-4">❌ <span class="line-through text-slate-400">不要寫成三個特色並列。</span> 要寫出它們的<span class="text-edu-cyan font-bold">因果關係</span>！</p>
+                            
+                            <div class="flex flex-col md:flex-row items-center justify-between bg-white p-5 rounded-xl border border-slate-100 shadow-sm mb-4 space-y-4 md:space-y-0">
+                                <div class="text-center">
+                                    <span class="block bg-rose-100 text-rose-700 text-xs font-bold px-2 py-1 rounded mb-2">教學問題</span>
+                                    <span class="font-bold text-slate-800">學生做不出專題</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-slate-300 hidden md:block"></i>
+                                <i class="fa-solid fa-arrow-down text-slate-300 md:hidden"></i>
+                                <div class="text-center">
+                                    <span class="block bg-cyan-100 text-cyan-700 text-xs font-bold px-2 py-1 rounded mb-2">教學策略</span>
+                                    <div class="text-sm font-bold text-slate-800">用<span class="text-edu-cyan">自主學習</span>增加時間</div>
+                                    <div class="text-sm font-bold text-slate-800">用<span class="text-edu-orange">SEL</span>增加毅力合作</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-slate-300 hidden md:block"></i>
+                                <i class="fa-solid fa-arrow-down text-slate-300 md:hidden"></i>
+                                <div class="text-center">
+                                    <span class="block bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded mb-2">改善成果</span>
+                                    <span class="font-bold text-edu-green">專題品質提升</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-edu-yellow/30 border-l-4 border-edu-yellow p-4 rounded-r-lg mt-4">
+                                <strong class="text-slate-800 block mb-1"><i class="fa-solid fa-key text-edu-orange mr-2"></i>核心啟示：</strong>
+                                <span class="text-slate-800 font-bold">寫成「教學問題 → 教學策略 → 改善成果」。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 教卓準備核心方向區 -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 fade-in-section">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-slate-800 mb-4 inline-block relative">
+                    教卓準備 8 大方向
+                    <div class="absolute bottom-1 left-0 w-full h-4 bg-edu-cyan -z-10 opacity-30"></div>
+                </h2>
+                <p class="text-lg text-slate-500 font-medium">建立團隊共識的行動指南</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Box 1 -->
+                <div class="bg-cyan-50 border-l-4 border-edu-cyan p-6 rounded-r-2xl hover:bg-cyan-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-cyan-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-award"></i></div>
+                    <i class="fa-solid fa-award text-2xl text-edu-cyan mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">1. 課程為什麼值得得獎</h4>
+                    <p class="text-sm text-slate-600 font-medium">清楚論述課程價值，而非只有熱情。</p>
+                </div>
+                <!-- Box 2 -->
+                <div class="bg-orange-50 border-l-4 border-edu-orange p-6 rounded-r-2xl hover:bg-orange-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-orange-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-tie"></i></div>
+                    <i class="fa-solid fa-user-tie text-2xl text-edu-orange mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">2. 課程與教學的專業能力</h4>
+                    <p class="text-sm text-slate-600 font-medium">展現教師共備、設計與引導的專業度。</p>
+                </div>
+                <!-- Box 3 -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-2xl hover:bg-yellow-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-yellow-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <i class="fa-solid fa-magnifying-glass text-2xl text-yellow-500 mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">3. 評審最在意的證據</h4>
+                    <p class="text-sm text-slate-600 font-medium">提出改變的數據與具體作品歷程。</p>
+                </div>
+                <!-- Box 4 -->
+                <div class="bg-green-50 border-l-4 border-edu-green p-6 rounded-r-2xl hover:bg-green-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-green-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-book-open"></i></div>
+                    <i class="fa-solid fa-book-open text-2xl text-edu-green mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">4. 報告書其實是學術論證</h4>
+                    <p class="text-sm text-slate-600 font-medium">邏輯嚴密，前後呼應，避免空泛形容詞。</p>
+                </div>
+                <!-- Box 5 -->
+                <div class="bg-purple-50 border-l-4 border-edu-purple p-6 rounded-r-2xl hover:bg-purple-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-purple-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <i class="fa-solid fa-microphone-lines text-2xl text-edu-purple mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">5. 簡報與口頭報告是敘事設計</h4>
+                    <p class="text-sm text-slate-600 font-medium">說一個動人且結構清晰的教育故事。</p>
+                </div>
+                <!-- Box 6 -->
+                <div class="bg-rose-50 border-l-4 border-edu-red p-6 rounded-r-2xl hover:bg-rose-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-rose-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-battery-half"></i></div>
+                    <i class="fa-solid fa-battery-half text-2xl text-edu-red mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">6. 全國賽準備真的很累</h4>
+                    <p class="text-sm text-slate-600 font-medium">團隊需要互相補位與心理支持。</p>
+                </div>
+                <!-- Box 7 -->
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-2xl hover:bg-blue-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-blue-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-folder-tree"></i></div>
+                    <i class="fa-solid fa-folder-tree text-2xl text-blue-500 mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">7. 訪視資料必須系統化</h4>
+                    <p class="text-sm text-slate-600 font-medium">讓評審在 3 秒內找到你想呈現的亮點。</p>
+                </div>
+                <!-- Box 8 -->
+                <div class="bg-peach-50 border-l-4 border-edu-peach bg-orange-50 p-6 rounded-r-2xl hover:bg-orange-100 transition-colors relative group overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-orange-100 opacity-50 group-hover:scale-110 transition-transform"><i class="fa-solid fa-globe"></i></div>
+                    <i class="fa-solid fa-globe text-2xl text-edu-peach mb-3"></i>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">8. 課程要放在學校生態裡</h4>
+                    <p class="text-sm text-slate-600 font-medium">課程不是孤立的，與學校願景息息相關。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 評審最在意的證據區 (證據強度比較圖) -->
+    <section class="py-24 bg-slate-800 text-white relative overflow-hidden">
+        <!-- Not using dark theme overall, but one punchy contrast section is okay if strictly designed. 
+             Wait, prompt said: "不要暗色系、不要黑底、不要深灰底".
+             RE-CORRECTING to Bright colorful background. -->
+    </section>
+    
+    <!-- Redesigned Section 5: Bright! -->
+    <section class="py-20 bg-gradient-to-b from-slate-50 to-cyan-50 relative border-b border-cyan-100">
+        <div class="max-w-5xl mx-auto px-4 fade-in-section">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-slate-800 mb-4 inline-block relative">
+                    評審最在意的證據區
+                    <div class="absolute -bottom-2 left-0 w-full h-3 bg-edu-orange -z-10 opacity-40"></div>
+                </h2>
+                <p class="text-lg text-slate-600 font-medium">證據強度比較圖：越往右，說服力越強</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-end justify-center h-[450px] md:h-[400px] gap-4 mb-12 pb-10 border-b-4 border-slate-300 relative px-4">
+                
+                <!-- Bar 1 -->
+                <div class="w-full md:w-1/4 flex flex-col items-center justify-end h-[30%] group relative">
+                    <div class="w-full bg-slate-200 rounded-t-2xl h-full flex flex-col items-center justify-end pb-4 transition-all duration-300 group-hover:bg-slate-300 group-hover:-translate-y-2 shadow-sm">
+                        <span class="font-bold text-slate-500 mb-2 px-2 text-center text-sm md:text-base">學習單</span>
+                        <span class="bg-white/80 text-slate-500 text-xs px-3 py-1 rounded-full font-bold">弱</span>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 w-[120%] z-10 text-sm font-medium text-center pointer-events-none">
+                        只有學生作答，缺乏老師指引的痕跡。
+                    </div>
+                </div>
+
+                <!-- Bar 2 -->
+                <div class="w-full md:w-1/4 flex flex-col items-center justify-end h-[50%] group relative">
+                    <div class="w-full bg-edu-yellow rounded-t-2xl h-full flex flex-col items-center justify-end pb-4 transition-all duration-300 group-hover:brightness-110 group-hover:-translate-y-2 shadow-md">
+                        <span class="font-bold text-yellow-900 mb-2 px-2 text-center text-sm md:text-base">教師回饋</span>
+                        <span class="bg-white/80 text-yellow-700 text-xs px-3 py-1 rounded-full font-bold">中</span>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 w-[120%] z-10 text-sm font-medium text-center pointer-events-none">
+                        有具體評語，看出師生互動與指導。
+                    </div>
+                </div>
+
+                <!-- Bar 3 -->
+                <div class="w-full md:w-1/4 flex flex-col items-center justify-end h-[75%] group relative">
+                    <div class="w-full bg-edu-cyan rounded-t-2xl h-full flex flex-col items-center justify-end pb-4 transition-all duration-300 group-hover:brightness-110 group-hover:-translate-y-2 shadow-lg">
+                        <span class="font-bold text-cyan-900 mb-2 px-2 text-center text-sm md:text-base">Rubrics評量</span>
+                        <span class="bg-white/90 text-cyan-700 text-xs px-3 py-1 rounded-full font-bold">強</span>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 w-[120%] z-10 text-sm font-medium text-center pointer-events-none">
+                        有明確標準，展現客觀評量的專業度。
+                    </div>
+                </div>
+
+                <!-- Bar 4 -->
+                <div class="w-full md:w-1/4 flex flex-col items-center justify-end h-[100%] group relative">
+                    <div class="w-full bg-gradient-to-t from-edu-red to-edu-orange rounded-t-2xl h-full flex flex-col items-center justify-end pb-4 transition-all duration-300 group-hover:brightness-110 group-hover:-translate-y-2 shadow-xl border-t-4 border-white">
+                        <i class="fa-solid fa-crown text-white text-xl mb-2 animate-bounce"></i>
+                        <span class="font-bold text-white mb-2 px-2 text-center text-sm md:text-base">學習成長數據</span>
+                        <span class="bg-white text-edu-red text-xs px-3 py-1 rounded-full font-black">最強</span>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="absolute -top-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 w-[130%] z-10 text-sm font-medium text-center pointer-events-none">
+                        前測後測對比、歷程變化分析，用數據證實教學有效！
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center bg-white p-6 rounded-3xl shadow-soft border border-slate-100 transform -translate-y-10 relative z-10 max-w-3xl mx-auto">
+                <p class="text-2xl md:text-3xl font-black text-slate-800 tracking-wide">
+                    評量工具不是證據，<br class="md:hidden">
+                    <span class="text-edu-red border-b-4 border-edu-yellow pb-1">經過分析後的結果</span>才是證據。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 亮點聚焦區 -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 fade-in-section">
+            <div class="bg-gradient-to-r from-edu-purple via-pink-300 to-edu-peach rounded-[40px] p-2 shadow-2xl relative overflow-hidden group">
+                <!-- Inner White Card -->
+                <div class="bg-white rounded-[32px] p-8 md:p-12 relative z-10">
+                    <div class="absolute top-0 right-0 bg-edu-yellow text-yellow-900 font-black px-6 py-2 rounded-bl-[32px] rounded-tr-[32px] shadow-sm">
+                        核心亮點
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-black text-slate-800 mb-8 text-center flex items-center justify-center">
+                        <i class="fa-solid fa-star text-edu-yellow mr-3"></i>
+                        最大亮點：<span class="text-transparent bg-clip-text bg-gradient-to-r from-edu-purple to-edu-red ml-2">兩年專題</span>
+                    </h3>
+
+                    <!-- Flowchart -->
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 mb-10">
+                        <div class="bg-purple-50 p-6 rounded-2xl w-full text-center border-2 border-purple-200 hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-circle-question text-3xl text-edu-purple mb-3 block"></i>
+                            <h4 class="font-bold text-lg text-slate-800 mb-1">為什麼兩年</h4>
+                            <p class="text-xs text-slate-500 font-medium">看見學生需要時間沉澱</p>
+                        </div>
+                        
+                        <div class="text-edu-purple text-2xl hidden md:block animate-pulse"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-edu-purple text-2xl md:hidden"><i class="fa-solid fa-arrow-down"></i></div>
+
+                        <div class="bg-orange-50 p-6 rounded-2xl w-full text-center border-2 border-orange-200 hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-compass-drafting text-3xl text-edu-orange mb-3 block"></i>
+                            <h4 class="font-bold text-lg text-slate-800 mb-1">如何設計兩年</h4>
+                            <p class="text-xs text-slate-500 font-medium">螺旋式架構與階段任務</p>
+                        </div>
+
+                        <div class="text-edu-orange text-2xl hidden md:block animate-pulse"><i class="fa-solid fa-arrow-right"></i></div>
+                        <div class="text-edu-orange text-2xl md:hidden"><i class="fa-solid fa-arrow-down"></i></div>
+
+                        <div class="bg-rose-50 p-6 rounded-2xl w-full text-center border-2 border-rose-200 hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-chart-line text-3xl text-edu-red mb-3 block"></i>
+                            <h4 class="font-bold text-lg text-slate-800 mb-1">兩年帶來什麼學習</h4>
+                            <p class="text-xs text-slate-500 font-medium">深度的探究與自我突破</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-xl md:text-2xl font-bold text-slate-700 bg-slate-50 inline-block px-6 py-3 rounded-full">
+                            不是專題做得久，而是讓學生有足夠時間<span class="text-edu-red font-black">經歷完整探究歷程</span>。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Background decoration for the card -->
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-white opacity-20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-white opacity-30 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 課程脈絡與生態系區 -->
+    <section class="py-20 bg-cyan-50 overflow-hidden relative">
+        <div class="max-w-6xl mx-auto px-4 fade-in-section">
+            <div class="text-center mb-16">
+                <span class="bg-white text-edu-cyan px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-4 inline-block shadow-sm border border-cyan-100">課程脈絡圖</span>
+                <h2 class="text-4xl font-black text-slate-800 mb-4">沒有一門課是孤單的</h2>
+                <p class="text-lg text-slate-600 font-medium">課程不是單點，而是一個<span class="text-edu-cyan font-bold">課程生態系</span></p>
+            </div>
+
+            <!-- Ecosystem Map (CSS relative positioning) -->
+            <div class="relative w-full max-w-4xl mx-auto h-[500px] md:h-[600px] flex items-center justify-center">
+                
+                <!-- Center Node -->
+                <div class="absolute z-20 w-32 h-32 md:w-40 md:h-40 bg-edu-yellow rounded-full flex flex-col items-center justify-center shadow-glow-yellow border-4 border-white animate-pulse" style="animation-duration: 3s;">
+                    <i class="fa-solid fa-seedling text-3xl text-yellow-800 mb-1"></i>
+                    <span class="font-black text-xl text-yellow-900">本課程</span>
+                </div>
+
+                <!-- Surrounding Nodes -->
+                <!-- Top -->
+                <div class="absolute z-10 top-10 md:top-20 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-edu-cyan font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-book text-edu-cyan mr-2"></i>校訂必修
+                </div>
+                <!-- Top Right -->
+                <div class="absolute z-10 top-24 right-4 md:top-32 md:right-20 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-edu-orange font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-vial text-edu-orange mr-2"></i>探究與實作
+                </div>
+                <!-- Right -->
+                <div class="absolute z-10 right-0 md:right-10 top-1/2 transform -translate-y-1/2 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-edu-purple font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-shapes text-edu-purple mr-2"></i>多元選修
+                </div>
+                <!-- Bottom Right -->
+                <div class="absolute z-10 bottom-24 right-4 md:bottom-32 md:right-20 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-edu-green font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-bullhorn text-edu-green mr-2"></i>學校活動
+                </div>
+                <!-- Bottom -->
+                <div class="absolute z-10 bottom-10 md:bottom-20 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-edu-red font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-medal text-edu-red mr-2"></i>競賽發表
+                </div>
+                <!-- Bottom Left -->
+                <div class="absolute z-10 bottom-24 left-4 md:bottom-32 md:left-20 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-blue-400 font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-share-nodes text-blue-500 mr-2"></i>校外分享交流
+                </div>
+                <!-- Left -->
+                <div class="absolute z-10 left-0 md:left-10 top-1/2 transform -translate-y-1/2 bg-white px-6 py-3 rounded-full shadow-lg border-2 border-teal-400 font-bold text-slate-700 hover:scale-110 transition-transform cursor-default">
+                    <i class="fa-solid fa-arrow-down-up-across-line text-teal-500 mr-2"></i>國中向下扎根
+                </div>
+
+                <!-- Connecting Lines (SVG) -->
+                <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" style="opacity: 0.3;">
+                    <line x1="50%" y1="50%" x2="50%" y2="15%" stroke="#00b4d8" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="80%" y2="25%" stroke="#ff9e00" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="90%" y2="50%" stroke="#cdb4db" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="80%" y2="75%" stroke="#a7c957" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="50%" y2="85%" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="20%" y2="75%" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,5" />
+                    <line x1="50%" y1="50%" x2="10%" y2="50%" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="5,5" />
+                </svg>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 最終核心心法區 -->
+    <section class="py-24 bg-gradient-to-br from-edu-yellow via-orange-300 to-edu-red relative overflow-hidden text-center text-slate-900">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0 opacity-20">
+            <div class="absolute top-10 left-10 text-9xl"><i class="fa-solid fa-asterisk"></i></div>
+            <div class="absolute bottom-10 right-10 text-9xl"><i class="fa-solid fa-certificate"></i></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 fade-in-section">
+            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                教卓不是比誰最炫，<br>
+                而是比：
+            </h2>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform md:-rotate-3 hover:rotate-0 transition-transform">
+                    <h3 class="text-3xl font-black text-edu-cyan mb-2">課程故事</h3>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform md:translate-y-4 hover:translate-y-0 transition-transform">
+                    <h3 class="text-3xl font-black text-edu-orange mb-2">學習證據</h3>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform md:rotate-3 hover:rotate-0 transition-transform">
+                    <h3 class="text-3xl font-black text-edu-green mb-2">教學決策</h3>
+                </div>
+            </div>
+
+            <p class="mt-16 text-2xl md:text-4xl font-black tracking-widest bg-white text-slate-800 inline-block px-10 py-5 rounded-full shadow-2xl border-4 border-white">
+                「因為<span class="text-edu-red">教育實踐</span>而高貴。」
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm">
+        <p>全國教學卓越準備指南 © Interactive Workshop Edition. Designed for Impact.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Accordion Logic
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Toggle current item
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items (Optional: if you want only one open at a time)
+                    // accordionItems.forEach(i => i.classList.remove('active'));
+                    
+                    if (!isActive) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+
+            // 2. Scroll Fade-In Animation (Intersection Observer)
+            const fadeSections = document.querySelectorAll('.fade-in-section');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            fadeSections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Trigger first check immediately for elements above fold
+            setTimeout(() => {
+                fadeSections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if(rect.top < window.innerHeight) {
+                        section.classList.add('is-visible');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
