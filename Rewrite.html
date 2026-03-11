@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教學卓越準備指南</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* 自定義字體與平滑滾動 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* 隱藏滾動條但保留功能 (提升視覺現代感) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8FAFF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Checkbox 動畫 */
+        .checklist-item input:checked + span {
+            text-decoration: line-through;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6', // 藍色
+                        secondary: '#F59E0B', // 橘色
+                        accent1: '#10B981', // 綠色
+                        accent2: '#8B5CF6', // 紫色
+                        danger: '#EF4444', // 紅色
+                        dangerLight: '#FEE2E2', // 淡紅色
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-[#F8FAFF] to-[#ECFEFF] min-h-screen text-gray-800 p-4 md:p-8 selection:bg-primary selection:text-white">
+
+    <div class="max-w-4xl mx-auto space-y-8 pb-20">
+        
+        <!-- 1️⃣ 頁面標題區 -->
+        <header class="text-center pt-8 pb-4">
+            <div class="inline-flex items-center justify-center p-3 bg-white rounded-2xl shadow-sm mb-4 text-primary">
+                <i data-lucide="sparkles" class="w-8 h-8"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">教學卓越準備指南</h1>
+            <p class="text-xl md:text-2xl text-gray-600 font-medium">從研究報告到動人教學故事</p>
+        </header>
+
+        <!-- 2️⃣ 核心提醒（最重要） -->
+        <section class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-primary transform transition-all duration-300 hover:shadow-2xl">
+            <div class="p-6 md:p-8 bg-blue-50/50">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="p-2 bg-primary rounded-lg text-white">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">核心提醒</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- 不要寫成 -->
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-gray-300"></div>
+                        <h3 class="text-gray-500 font-bold mb-4 flex items-center"><i data-lucide="x-circle" class="w-5 h-5 mr-2"></i>不要寫成</h3>
+                        <ul class="space-y-3 text-gray-600 font-medium text-lg">
+                            <li class="flex items-center"><i data-lucide="minus" class="w-4 h-4 mr-2 text-gray-400"></i>研究論文</li>
+                            <li class="flex items-center"><i data-lucide="minus" class="w-4 h-4 mr-2 text-gray-400"></i>統計研究</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 要寫成 -->
+                    <div class="bg-white p-6 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                        <h3 class="text-primary font-bold mb-4 flex items-center"><i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>要寫成</h3>
+                        <ul class="space-y-3 text-gray-800 font-bold text-lg">
+                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-primary"></i>教學故事</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-primary"></i>教學邏輯</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ⭐ 重要提醒元件 -->
+                <div class="bg-dangerLight border-l-4 border-danger p-5 rounded-r-xl flex items-start space-x-4 transform transition hover:scale-[1.02] shadow-sm">
+                    <i data-lucide="alert-triangle" class="text-danger w-7 h-7 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <h4 class="font-bold text-danger flex items-center text-lg">⭐ 重要提醒：委員核心建議</h4>
+                        <p class="text-gray-900 mt-2 font-medium text-lg">「不要寫成學術論文，要寫出動人的教學故事。」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 手風琴區塊容器 -->
+        <div class="space-y-5">
+            
+            <!-- 3️⃣ 一、核心問題診斷 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-lg">
+                <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white cursor-pointer focus:outline-none" onclick="toggleAccordion('sec-diagnosis')">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-2.5 rounded-xl bg-orange-100 text-secondary">
+                            <i data-lucide="search" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800">一、核心問題診斷</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transform transition-transform duration-300" id="icon-sec-diagnosis"></i>
+                </button>
+                <div id="sec-diagnosis" class="px-6 pb-6 hidden border-t border-gray-50 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-gray-700 mb-3 border-b pb-2">目前計畫書問題</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-center bg-gray-50 p-2 rounded"><i data-lucide="file-text" class="w-4 h-4 mr-2 text-gray-400"></i>過於像研究報告</li>
+                                <li class="flex items-center bg-gray-50 p-2 rounded"><i data-lucide="bar-chart-2" class="w-4 h-4 mr-2 text-gray-400"></i>過多統計數據</li>
+                                <li class="flex items-center bg-red-50 p-2 rounded text-red-600 font-medium"><i data-lucide="book-x" class="w-4 h-4 mr-2"></i>缺乏教學故事</li>
+                            </ul>
+                            
+                            <h3 class="font-bold text-gray-700 mt-5 mb-3 border-b pb-2">標題問題</h3>
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <p class="text-gray-800 font-medium"><span class="text-red-500 line-through mr-2">研究室</span> 不要使用這個詞！</p>
+                                <p class="text-gray-500 text-sm mt-1">原因：聽起來像團隊名稱，不像教學方案。</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-700 mb-3 border-b pb-2">亮點提醒</h3>
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <p class="text-gray-500 font-medium mb-2">不要只寫：</p>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-400">PBL</span>
+                                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-400">SEL</span>
+                                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-400">SDGs</span>
+                                </div>
+                                <p class="text-gray-400 text-sm mt-2">原因：因為每個學校都在寫。</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                                <p class="text-green-700 font-bold mb-2">💎 真正亮點是：</p>
+                                <ul class="space-y-2 text-green-800 font-medium">
+                                    <li class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2"></i>全校參與</li>
+                                    <li class="flex items-center"><i data-lucide="heart-handshake" class="w-5 h-5 mr-2"></i>長期陪伴</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4️⃣ 二、具體改進策略 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-lg">
+                <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white cursor-pointer focus:outline-none" onclick="toggleAccordion('sec-strategy')">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-2.5 rounded-xl bg-blue-100 text-primary">
+                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800">二、具體改進策略</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transform transition-transform duration-300" id="icon-sec-strategy"></i>
+                </button>
+                <div id="sec-strategy" class="px-6 pb-6 hidden border-t border-gray-50 pt-4 space-y-6">
+                    
+                    <!-- 區塊A -->
+                    <div class="bg-blue-50/30 p-5 rounded-xl border border-blue-50">
+                        <h3 class="font-bold text-primary text-lg mb-4 flex items-center"><i data-lucide="map" class="w-5 h-5 mr-2"></i>教學理念與發展過程</h3>
+                        <div class="flex flex-col md:flex-row gap-4 mb-4">
+                            <div class="flex-1 bg-white p-4 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-500 mb-1">委員建議 (課程歷史)</p>
+                                <p class="font-bold text-gray-800">6~11頁太長 <i data-lucide="arrow-right" class="inline w-4 h-4 mx-1 text-primary"></i> <span class="text-primary">縮減成 1 頁</span></p>
+                            </div>
+                            <div class="flex-1 bg-white p-4 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-500 mb-1">亮點呈現</p>
+                                <p class="font-bold text-gray-800">20年課程傳承、組織韌性</p>
+                            </div>
+                        </div>
+                        
+                        <!-- ⭐ 重要提醒元件 -->
+                        <div class="bg-dangerLight border-l-4 border-danger p-4 rounded-r-lg flex items-start space-x-3 transform transition hover:scale-[1.01] shadow-sm">
+                            <i data-lucide="alert-triangle" class="text-danger w-6 h-6 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-danger">⭐ 重要提醒：行動建議</h4>
+                                <p class="text-gray-900 mt-1">製作 <strong>方案架構圖</strong> 與 <strong>課程地圖</strong>。讓評審一眼看懂：<br>
+                                <span class="inline-block bg-white px-2 py-1 rounded text-primary mt-2 text-sm">高一能力培養 ➔ 高二專題分流</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 區塊B -->
+                    <div class="bg-blue-50/30 p-5 rounded-xl border border-blue-50">
+                        <h3 class="font-bold text-primary text-lg mb-4 flex items-center"><i data-lucide="graduation-cap" class="w-5 h-5 mr-2"></i>教學創新與學習表現</h3>
+                        <div class="mb-4 bg-red-50 p-4 rounded-lg border border-red-100">
+                            <p class="font-bold text-red-600 mb-2">目前缺失：</p>
+                            <p class="text-gray-700">看不到 <strong>老師怎麼教</strong>、<strong>學生怎麼學</strong>。</p>
+                        </div>
+                        
+                        <!-- ⭐ 重要提醒元件 -->
+                        <div class="bg-dangerLight border-l-4 border-danger p-4 rounded-r-lg flex items-start space-x-3 transform transition hover:scale-[1.01] shadow-sm">
+                            <i data-lucide="alert-triangle" class="text-danger w-6 h-6 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-danger">⭐ 重要提醒：這才是教學卓越</h4>
+                                <p class="text-gray-900 mt-1 mb-2">必須寫出：<strong>學生遇到困難</strong> ➔ <strong>老師如何引導</strong></p>
+                                <div class="bg-white p-3 rounded-lg border border-red-200">
+                                    <p class="text-sm text-gray-500 mb-1">💡 故事範例：</p>
+                                    <p class="text-gray-800 font-medium">學生做不出專題 <i data-lucide="arrow-right" class="inline w-4 h-4 mx-1 text-primary"></i> SEL如何幫助 (情緒管理、挫折調整) <i data-lucide="arrow-right" class="inline w-4 h-4 mx-1 text-primary"></i> 持續完成</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 5️⃣ 三、學習成果呈現 & 四、成效評估改進 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-lg">
+                <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white cursor-pointer focus:outline-none" onclick="toggleAccordion('sec-outcomes')">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-2.5 rounded-xl bg-purple-100 text-accent2">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800">三、成果與評估改進</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transform transition-transform duration-300" id="icon-sec-outcomes"></i>
+                </button>
+                <div id="sec-outcomes" class="px-6 pb-6 hidden border-t border-gray-50 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- 學習成果呈現 -->
+                        <div>
+                            <h3 class="font-bold text-accent2 text-lg mb-4">學習成果呈現</h3>
+                            <div class="bg-purple-50 p-4 rounded-xl mb-4">
+                                <p class="text-gray-500 text-sm mb-1">不要只寫：</p>
+                                <p class="text-gray-700 line-through">全校多少小論文</p>
+                                <div class="w-full h-px bg-purple-200 my-2"></div>
+                                <p class="text-accent2 font-bold mb-1">要寫：學生改變故事</p>
+                                <p class="text-gray-800 font-medium text-sm">沒有自信 ➔ 站上講台 ➔ 回答教授提問</p>
+                            </div>
+                            <div class="bg-white border border-purple-100 p-4 rounded-xl shadow-sm">
+                                <p class="font-bold text-gray-700 mb-2 text-sm">呈現學習歷程：</p>
+                                <div class="flex flex-wrap gap-2 text-sm">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-medium">觀看</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-medium">感受</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-medium">思考</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-medium">對話</span>
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-medium">行動</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 成效評估改進 -->
+                        <div>
+                            <h3 class="font-bold text-accent2 text-lg mb-4">成效評估改進</h3>
+                            <div class="flex items-center space-x-3 mb-4 bg-gray-50 p-3 rounded-lg">
+                                <i data-lucide="trash-2" class="text-gray-400 w-5 h-5"></i>
+                                <div>
+                                    <p class="font-bold text-gray-600 line-through">P值統計分析</p>
+                                    <p class="text-xs text-gray-400">原因：太學術</p>
+                                </div>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-xl mb-4">
+                                <p class="font-bold text-accent2 mb-2 text-sm">建議呈現：</p>
+                                <ul class="space-y-1 text-gray-700 font-medium">
+                                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-accent2"></i>Rubrics (評量尺規)</li>
+                                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-accent2"></i>學習成長軌跡</li>
+                                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-accent2"></i>教師回饋</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white border border-purple-100 p-4 rounded-xl shadow-sm">
+                                <p class="font-bold text-gray-700 mb-2 text-sm flex items-center"><i data-lucide="image" class="w-4 h-4 mr-1"></i> 照片建議</p>
+                                <p class="text-sm text-gray-600"><span class="text-red-500 mr-2">❌ 不要小圖</span></p>
+                                <p class="text-sm text-gray-800 font-medium mt-1"><span class="text-accent2 mr-2">✅ 要用：</span>大圖、局部放大、學生互動畫面</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6️⃣ 五、專家指出的重要亮點 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-lg">
+                <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white cursor-pointer focus:outline-none" onclick="toggleAccordion('sec-highlights')">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-2.5 rounded-xl bg-green-100 text-accent1">
+                            <i data-lucide="star" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800">五、專家指出的重要亮點</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transform transition-transform duration-300" id="icon-sec-highlights"></i>
+                </button>
+                <div id="sec-highlights" class="px-6 pb-6 hidden border-t border-gray-50 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <!-- 亮點 1 -->
+                        <div class="bg-green-50 p-5 rounded-xl border border-green-100 hover:-translate-y-1 transition-transform">
+                            <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm mb-3">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-accent1"></i>
+                            </div>
+                            <h3 class="font-bold text-green-800 mb-2">不可替代性</h3>
+                            <p class="text-sm text-gray-600 mb-2">為什麼要讓每個學生做專題？</p>
+                            <p class="font-bold text-gray-800 bg-white p-2 rounded text-center">因為學生缺乏自信<br><span class="text-accent1">專題課程 = 建立自信</span></p>
+                        </div>
+
+                        <!-- 亮點 2 -->
+                        <div class="bg-green-50 p-5 rounded-xl border border-green-100 hover:-translate-y-1 transition-transform">
+                            <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm mb-3">
+                                <i data-lucide="network" class="w-5 h-5 text-accent1"></i>
+                            </div>
+                            <h3 class="font-bold text-green-800 mb-2">跨領域合作</h3>
+                            <p class="text-sm text-gray-600 mb-2">真實的教師協作範例</p>
+                            <p class="font-bold text-gray-800 bg-white p-2 rounded text-center">國文老師 + 數學老師<br><span class="text-accent1">共同指導專題</span></p>
+                        </div>
+
+                        <!-- 亮點 3 -->
+                        <div class="bg-green-50 p-5 rounded-xl border border-green-100 hover:-translate-y-1 transition-transform">
+                            <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm mb-3">
+                                <i data-lucide="users" class="w-5 h-5 text-accent1"></i>
+                            </div>
+                            <h3 class="font-bold text-green-800 mb-2">團隊文化</h3>
+                            <ul class="text-sm text-gray-700 space-y-2">
+                                <li class="bg-white p-2 rounded"><strong>校長領導風格：</strong><br>溫和、堅定</li>
+                                <li class="bg-white p-2 rounded"><strong>教師文化：</strong><br>從抱怨 ➔ 投入</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7️⃣ 六、下一步行動清單 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-lg">
+                <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white cursor-pointer focus:outline-none" onclick="toggleAccordion('sec-checklist')">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-2.5 rounded-xl bg-gray-100 text-gray-600">
+                            <i data-lucide="check-square" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800">六、下一步行動清單</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 transform transition-transform duration-300" id="icon-sec-checklist"></i>
+                </button>
+                <div id="sec-checklist" class="px-6 pb-6 hidden border-t border-gray-50 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 bg-gray-50 p-4 rounded-xl">
+                        
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">修改標題</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">建立方案架構圖</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">SEL融入課程</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">增加學生故事</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">減少統計數據</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">強化教學歷程</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">優化照片</span>
+                        </label>
+
+                        <label class="checklist-item flex items-center space-x-3 p-3 hover:bg-white rounded-lg cursor-pointer transition-colors border border-transparent hover:border-gray-200 shadow-sm hover:shadow">
+                            <input type="checkbox" class="w-5 h-5 text-accent1 rounded border-gray-300 focus:ring-accent1">
+                            <span class="text-gray-800 font-bold">增加外部評審</span>
+                        </label>
+
+                    </div>
+                    
+                    <!-- 慶祝動畫容器 (隱藏) -->
+                    <div id="celebrate" class="hidden mt-4 text-center text-accent1 font-bold animate-pulse">
+                        🎉 太棒了！您已準備好邁向教學卓越！
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 8️⃣ 額外加值建議：心法地圖版視覺 -->
+        <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+            <h3 class="text-gray-500 font-bold mb-6 flex justify-center items-center">
+                <i data-lucide="map" class="w-5 h-5 mr-2"></i> 加值贈送：教卓準備心法地圖
+            </h3>
+            <div class="inline-block bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-left font-mono text-gray-700 leading-relaxed overflow-x-auto max-w-full">
+<pre class="whitespace-pre">
+教卓成功 🏆
+   │
+   ├─📂 <span class="text-primary font-bold">課程故事</span> (不是論文！)
+   │  └─ 學生遇到困難 → 老師如何引導
+   │
+   ├─🧭 <span class="text-secondary font-bold">教學決策</span>
+   │  └─ 建立方案架構圖、縮減課程歷史
+   │
+   ├─🌱 <span class="text-accent1 font-bold">學生蛻變</span>
+   │  └─ 從沒有自信 → 到站上講台
+   │
+   └─📊 <span class="text-accent2 font-bold">學習證據</span>
+      └─ Rubrics、大照片、成長軌跡 (刪除P值)
+</pre>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 初始化 Lucide Icons
+        lucide.createIcons();
+
+        // 手風琴開關功能
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('hidden')) {
+                // 展開
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                // 收起
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // 預設展開「一、核心問題診斷」與「二、具體改進策略」以吸引注意力
+        setTimeout(() => {
+            toggleAccordion('sec-diagnosis');
+            toggleAccordion('sec-strategy');
+        }, 100);
+
+        // Checklist 互動小彩蛋
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const celebrateText = document.getElementById('celebrate');
+        
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                if (allChecked) {
+                    celebrateText.classList.remove('hidden');
+                } else {
+                    celebrateText.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
