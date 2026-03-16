@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跨域探究學習地圖</title>
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* 確保部分特殊字體排版渲染正常 */
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-slate-50 p-4 md:p-8 text-gray-800 overflow-x-auto">
+    <!-- Poster Container - Enforcing min-width for infographic layout preservation -->
+    <div class="min-w-[1024px] max-w-[1200px] mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
+      
+      <!-- Header Section -->
+      <div class="relative bg-slate-900 text-white py-12 px-8 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-50"></div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-500 rounded-full blur-[100px] opacity-50"></div>
+        
+        <div class="relative z-10 text-center space-y-4">
+          <h1 class="text-5xl font-black tracking-tight flex items-center justify-center gap-4">
+            <i data-lucide="compass" class="w-12 h-12 text-blue-400"></i>
+            跨域探究學習地圖
+            <i data-lucide="rocket" class="w-12 h-12 text-orange-400"></i>
+          </h1>
+          <p class="text-2xl font-light text-blue-200 tracking-wider">Interdisciplinary Inquiry Curriculum Map</p>
+          <div class="inline-block mt-4 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30">
+            <p class="text-lg font-medium text-white tracking-widest">從國中探究到高中專題的學習歷程</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="flex relative p-8 bg-slate-50">
+        
+        <!-- Left Pillar: SEL Support System -->
+        <div class="w-20 flex-shrink-0 flex flex-col items-center">
+          <div class="sticky top-8 flex flex-col items-center justify-center bg-gradient-to-b from-teal-50 to-teal-100 border-2 border-teal-200 rounded-full py-12 shadow-md w-16 h-full min-h-[600px] z-20">
+            <i data-lucide="heart-handshake" class="w-8 h-8 text-teal-600 mb-6"></i>
+            <div 
+              class="text-teal-800 font-bold text-xl tracking-[0.3em]" 
+              style="writing-mode: vertical-rl; text-orientation: upright;"
+            >
+              SEL 支持系統
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Timeline & Cards -->
+        <div class="flex-1 px-4 relative">
+          
+          <!-- The Central Flow Line -->
+          <div class="absolute left-[130px] top-8 bottom-8 w-3 bg-gradient-to-b from-green-400 via-blue-400 via-orange-400 to-purple-500 rounded-full shadow-inner z-0"></div>
+
+          <!-- Stage 1: Junior High -->
+          <div class="flex relative mb-16 z-10">
+            <div class="w-[130px] flex-shrink-0 text-right pr-10 pt-4">
+              <h2 class="text-4xl font-black text-green-600 tracking-wider">國中</h2>
+              <p class="text-green-800 font-bold mt-2 text-lg">問題導向探究</p>
+              <p class="text-green-500/80 text-sm font-semibold mt-1">探究基礎</p>
+            </div>
+            
+            <div class="absolute left-[130px] top-6 w-10 h-10 -ml-[19px] rounded-full bg-white border-4 border-green-500 shadow-md flex items-center justify-center z-20">
+              <div class="w-4 h-4 rounded-full bg-green-500"></div>
+            </div>
+            
+            <div class="flex-1 pl-12">
+              <div class="bg-white rounded-2xl shadow-xl shadow-green-900/5 border-t-4 border-green-500 p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-bl-full -z-10"></div>
+                
+                <div class="flex items-start gap-8">
+                  <div class="flex-1">
+                    <h3 class="flex items-center gap-2 text-lg font-bold text-green-800 mb-3">
+                      <i data-lucide="book-open" class="w-5 h-5 text-green-500"></i> 課程模組
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="bg-green-100 text-green-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-green-200 shadow-sm">問題導向學習</span>
+                      <span class="bg-green-100 text-green-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-green-200 shadow-sm">資訊科技探究</span>
+                      <span class="bg-green-100 text-green-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-green-200 shadow-sm">AI與科技應用</span>
+                      <span class="bg-green-100 text-green-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-green-200 shadow-sm">跨領域探究</span>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="w-1/3 border-l-2 border-dashed border-gray-200 pl-6">
+                    <h3 class="flex items-center gap-2 text-lg font-bold text-green-800 mb-3">
+                      <i data-lucide="target" class="w-5 h-5 text-green-500"></i> 培養能力
+                    </h3>
+                    <ul class="space-y-2">
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> 問題意識</li>
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> 資料蒐集</li>
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> 基礎探究</li>
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> 合作學習</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: High 1 -->
+          <div class="flex relative mb-16 z-10">
+            <div class="w-[130px] flex-shrink-0 text-right pr-10 pt-4">
+              <h2 class="text-4xl font-black text-blue-600 tracking-wider">高一</h2>
+              <p class="text-blue-800 font-bold mt-2 text-lg">研究方法</p>
+              <p class="text-blue-500/80 text-sm font-semibold mt-1">研究基礎</p>
+            </div>
+            
+            <div class="absolute left-[130px] top-6 w-10 h-10 -ml-[19px] rounded-full bg-white border-4 border-blue-500 shadow-md flex items-center justify-center z-20">
+              <div class="w-4 h-4 rounded-full bg-blue-500"></div>
+            </div>
+            
+            <div class="flex-1 pl-12">
+              <div class="bg-white rounded-2xl shadow-xl shadow-blue-900/5 border-t-4 border-blue-500 p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10"></div>
+                
+                <div class="flex items-start gap-8">
+                  <div class="flex-1">
+                    <h3 class="flex items-center gap-2 text-lg font-bold text-blue-800 mb-3">
+                      <i data-lucide="search" class="w-5 h-5 text-blue-500"></i> 研究方法課程
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-blue-200 shadow-sm">資料蒐集</span>
+                      <span class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-blue-200 shadow-sm">閱讀與分析</span>
+                      <span class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-blue-200 shadow-sm">量化研究</span>
+                      <span class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-blue-200 shadow-sm">質性研究</span>
+                      <span class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-blue-200 shadow-sm">主題探索</span>
+                    </div>
+                  </div>
+                  
+                  <div class="w-1/3 border-l-2 border-dashed border-gray-200 pl-6">
+                    <h3 class="flex items-center gap-2 text-lg font-bold text-blue-800 mb-3">
+                      <i data-lucide="brain" class="w-5 h-5 text-blue-500"></i> 培養能力
+                    </h3>
+                    <ul class="space-y-2">
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> 問題形成</li>
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> 研究設計</li>
+                      <li class="flex items-center gap-2 text-gray-700 text-sm font-medium"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> 資料分析</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: High 2 (Huge Project Area) -->
+          <div class="flex relative mb-16 z-10">
+            <div class="w-[130px] flex-shrink-0 text-right pr-10 pt-4">
+              <h2 class="text-4xl font-black text-orange-600 tracking-wider">高二</h2>
+              <p class="text-orange-800 font-bold mt-2 text-lg">跨域專題</p>
+              <p class="text-orange-500/80 text-sm font-semibold mt-1">專題研究</p>
+            </div>
+            
+            <div class="absolute left-[130px] top-6 w-10 h-10 -ml-[19px] rounded-full bg-white border-4 border-orange-500 shadow-md flex items-center justify-center z-20">
+              <div class="w-4 h-4 rounded-full bg-orange-500"></div>
+            </div>
+            
+            <div class="flex-1 pl-12">
+              <div class="bg-white rounded-2xl shadow-xl shadow-orange-900/5 border-t-4 border-orange-500 p-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-bl-full -z-10"></div>
+                
+                <h3 class="flex items-center gap-2 text-xl font-bold text-orange-800 mb-4 border-b-2 border-orange-100 pb-2">
+                  <i data-lucide="lightbulb" class="w-6 h-6 text-orange-500"></i> 學生依興趣選擇專題領域
+                </h3>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                  <!-- Domain Cards -->
+                  <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                    <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>質性人文</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">繪本多議點</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">文學遊藝思</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">古典小說專題研究</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">用英文介紹台灣</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">士林好好玩</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">以文學之名游生命之海</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">閱讀思辨與表達</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">心理萬花筒</span>
+                    </div>
+                  </div>
+
+                  <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                    <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>社會科學</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">陽明青年行 SDGs</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">教室外的公民課</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">媒體識讀與日常思辨</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">生活中的心理學</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">地理專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">公民觀察家</span>
+                    </div>
+                  </div>
+
+                  <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                    <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>自然科學</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">物理專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">化學專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">生物專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">地科專題</span>
+                    </div>
+                  </div>
+
+                  <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                    <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>數學與數據科學</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">跨領域數學建模</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">跨領域系統分析</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">數學專題</span>
+                    </div>
+                  </div>
+
+                  <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                    <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>科技領域</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">資訊科技專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">機器人專題</span>
+                      <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">人工智慧 AI 專題</span>
+                    </div>
+                  </div>
+
+                  <div class="space-y-4">
+                    <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                      <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>文藝創作</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">翻玩歷史玩轉世界</span>
+                        <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">Fun手作酷玩藝</span>
+                      </div>
+                    </div>
+                    <div class="bg-orange-50/50 rounded-xl p-4 border border-orange-100">
+                      <h4 class="font-bold text-orange-700 mb-2 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-400"></span>財經領域</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="bg-white text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-100">投資理財專題</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 新增：專題展演與競賽 (從高三移至此) -->
+                <div class="mt-8 pt-6 border-t-2 border-dashed border-orange-100">
+                  <h3 class="flex items-center gap-2 text-lg font-bold text-orange-800 mb-3">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-orange-500"></i> 專題展演與競賽
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-orange-100 text-orange-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-orange-200 shadow-sm">專題成果發表</span>
+                    <span class="bg-orange-100 text-orange-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-orange-200 shadow-sm">小論文發表</span>
+                    <span class="bg-orange-100 text-orange-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-orange-200 shadow-sm">專題競賽</span>
+                    <span class="bg-orange-100 text-orange-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-orange-200 shadow-sm">AI教育節成果</span>
+                    <span class="bg-orange-100 text-orange-800 px-3 py-1.5 rounded-lg text-sm font-semibold border border-orange-200 shadow-sm">科展與研究</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4: High 3 -->
+          <div class="flex relative z-10 mb-8">
+            <div class="w-[130px] flex-shrink-0 text-right pr-10 pt-4">
+              <h2 class="text-4xl font-black text-purple-600 tracking-wider">高三</h2>
+              <p class="text-purple-800 font-bold mt-2 text-lg">成果發表</p>
+              <p class="text-purple-500/80 text-sm font-semibold mt-1">成果展現</p>
+            </div>
+            
+            <div class="absolute left-[130px] top-6 w-10 h-10 -ml-[19px] rounded-full bg-white border-4 border-purple-500 shadow-md flex items-center justify-center z-20">
+              <i data-lucide="flag" class="w-5 h-5 text-purple-600"></i>
+            </div>
+            
+            <div class="flex-1 pl-12">
+              <div class="bg-white rounded-2xl shadow-xl shadow-purple-900/5 border-t-4 border-purple-500 p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full -z-10"></div>
+                
+                <div class="flex items-start gap-8">
+                  <div class="flex-1">
+                    <h3 class="flex items-center gap-2 text-lg font-bold text-purple-800 mb-4">
+                      <i data-lucide="award" class="w-5 h-5 text-purple-500"></i> 成果應用
+                    </h3>
+                    <div class="flex flex-wrap gap-4">
+                      <div class="flex items-center gap-2 text-gray-800 font-bold bg-purple-50 px-4 py-3 rounded-lg border border-purple-100 shadow-sm">
+                        <i data-lucide="target" class="w-5 h-5 text-purple-500"></i> 學習歷程檔案
+                      </div>
+                      <div class="flex items-center gap-2 text-gray-800 font-bold bg-purple-50 px-4 py-3 rounded-lg border border-purple-100 shadow-sm">
+                        <i data-lucide="target" class="w-5 h-5 text-purple-500"></i> 升學申請
+                      </div>
+                      <div class="flex items-center gap-2 text-gray-800 font-bold bg-purple-50 px-4 py-3 rounded-lg border border-purple-100 shadow-sm">
+                        <i data-lucide="target" class="w-5 h-5 text-purple-500"></i> 研究深化
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Pillar: SDGs Support System -->
+                        <i data-lucide="target" class="w-4 h-4 text-purple-500"></i> 升學申請
+                      </li>
+                      <li class="flex items-center gap-2 text-gray-800 font-bold bg-purple-50 px-3 py-2 rounded-lg border border-purple-100">
+                        <i data-lucide="target" class="w-4 h-4 text-purple-500"></i> 研究深化
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Pillar: SDGs Support System -->
+        <div class="w-20 flex-shrink-0 flex flex-col items-center">
+          <div class="sticky top-8 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-blue-100 border-2 border-blue-200 rounded-full py-12 shadow-md w-16 h-full min-h-[600px] z-20">
+            <i data-lucide="globe" class="w-8 h-8 text-blue-600 mb-6"></i>
+            <div 
+              class="text-blue-800 font-bold text-xl tracking-[0.3em]" 
+              style="writing-mode: vertical-rl; text-orientation: upright;"
+            >
+              SDGs 跨域議題
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Footer Area -->
+      <div class="bg-gray-50 border-t border-gray-200 p-4 text-center">
+        <p class="text-gray-400 text-sm font-medium tracking-widest">Empowering Students for the Future</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 啟動 Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
