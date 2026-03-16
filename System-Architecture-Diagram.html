@@ -58,6 +58,21 @@
             background: linear-gradient(to bottom, transparent, currentColor, transparent);
             animation: flowDown 2s infinite linear;
         }
+
+        /* 針對文字較多的區塊自訂優雅的捲軸 */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #ddd6fe;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #a78bfa;
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen">
@@ -333,163 +348,205 @@
             </div>
 
             <!-- 響應式網格：手機 1欄，平板 2欄，桌機 4欄 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                 
                 <!-- 國中階段 -->
-                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-indigo-50 flex flex-col items-center">
-                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mb-2 shadow-inner group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300 relative z-10">
+                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-indigo-50 flex flex-col items-center h-full">
+                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mb-2 shadow-inner group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0">
                         <span class="text-2xl font-black">國中</span>
                     </div>
-                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest">學習階段</div>
+                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest shrink-0">學習階段</div>
 
-                    <div class="h-6 flow-line-container my-1 text-indigo-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-indigo-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-indigo-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-indigo-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-indigo-400 font-bold mb-1">課程主軸</div>
                         <div class="font-bold text-indigo-900">基礎探究</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-indigo-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-indigo-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1 shrink-0"></i>
 
                     <div class="w-full border border-gray-100 rounded-xl p-3 text-center relative z-10 bg-white">
                         <div class="text-xs text-gray-400 font-bold mb-2">課程內容</div>
                         <div class="text-sm text-gray-700">資訊科技<br>專題探索</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-indigo-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-indigo-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-indigo-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-indigo-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-indigo-400 font-bold mb-1">能力培養</div>
                         <div class="text-sm font-bold text-indigo-800"><i class="fas fa-lightbulb mr-1 text-indigo-500"></i>問題覺察</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-indigo-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-indigo-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-indigo-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-indigo-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto">
+                    <div class="w-full bg-indigo-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto shrink-0">
                         <div class="text-xs text-indigo-200 mb-1">最終成果</div>
                         <div class="font-bold text-sm"><i class="fas fa-flag-checkered mr-1 text-yellow-300"></i>探索紀錄 / 實作</div>
                     </div>
                 </div>
 
-                <!-- 高一階段 -->
-                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-blue-50 flex flex-col items-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-2 shadow-inner group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 relative z-10">
+                <!-- 高一階段 (已更新) -->
+                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-blue-50 flex flex-col items-center h-full">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-2 shadow-inner group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0">
                         <span class="text-2xl font-black">高一</span>
                     </div>
-                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest">學習階段</div>
+                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest shrink-0">學習階段</div>
 
-                    <div class="h-6 flow-line-container my-1 text-blue-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-blue-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-blue-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-blue-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-blue-400 font-bold mb-1">課程主軸</div>
-                        <div class="font-bold text-blue-900">探究基礎</div>
+                        <div class="font-bold text-blue-900">研究方法</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-blue-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-blue-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full border border-gray-100 rounded-xl p-3 text-center relative z-10 bg-white">
-                        <div class="text-xs text-gray-400 font-bold mb-2">課程內容</div>
-                        <div class="text-sm text-gray-700">閱讀思辨<br>社會議題</div>
+                    <div class="w-full border border-gray-100 rounded-xl p-3 text-center relative z-10 bg-white flex-1">
+                        <div class="text-xs text-gray-400 font-bold mb-2">課程內容 (研究基礎)</div>
+                        <div class="text-sm text-gray-700 space-y-2">
+                            <div class="bg-gray-50 rounded px-2 py-1">研究方法與資料蒐集</div>
+                            <div class="bg-gray-50 rounded px-2 py-1">閱讀與分析</div>
+                            <div class="bg-gray-50 rounded px-2 py-1">量化研究、質性研究</div>
+                            <div class="bg-gray-50 rounded px-2 py-1">主題探索</div>
+                        </div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-blue-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-blue-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-blue-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-blue-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-blue-400 font-bold mb-1">能力培養</div>
-                        <div class="text-sm font-bold text-blue-800"><i class="fas fa-search mr-1 text-blue-500"></i>探究能力</div>
+                        <div class="text-sm font-bold text-blue-800 flex flex-wrap justify-center gap-2">
+                            <span>問題形成</span>
+                            <span>研究設計</span>
+                            <span>資料分析</span>
+                        </div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-blue-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-blue-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-blue-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-blue-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto">
+                    <div class="w-full bg-blue-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto shrink-0">
                         <div class="text-xs text-blue-200 mb-1">最終成果</div>
                         <div class="font-bold text-sm"><i class="fas fa-book-open mr-1 text-yellow-300"></i>議題報告 / 反思</div>
                     </div>
                 </div>
 
-                <!-- 高二階段 -->
-                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-violet-50 flex flex-col items-center">
-                    <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 mb-2 shadow-inner group-hover:bg-violet-500 group-hover:text-white transition-colors duration-300 relative z-10">
+                <!-- 高二階段 (已更新) -->
+                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-violet-50 flex flex-col items-center h-full">
+                    <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 mb-2 shadow-inner group-hover:bg-violet-500 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0">
                         <span class="text-2xl font-black">高二</span>
                     </div>
-                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest">學習階段</div>
+                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest shrink-0">學習階段</div>
 
-                    <div class="h-6 flow-line-container my-1 text-violet-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-violet-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-violet-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-violet-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-violet-400 font-bold mb-1">課程主軸</div>
-                        <div class="font-bold text-violet-900">專題研究</div>
+                        <div class="font-bold text-violet-900">跨域專題 / 專題研究</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-violet-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-violet-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full border border-gray-100 rounded-xl p-3 text-center relative z-10 bg-white">
-                        <div class="text-xs text-gray-400 font-bold mb-2">課程內容</div>
-                        <div class="text-sm text-gray-700">自然專題<br>數學建模<br>跨域研究</div>
+                    <!-- 加入可滑動區塊 custom-scrollbar -->
+                    <div class="w-full border border-gray-100 rounded-xl p-3 relative z-10 bg-white flex-1 flex flex-col min-h-[12rem]">
+                        <div class="text-xs text-gray-400 font-bold mb-2 text-center shrink-0">依興趣選擇 (向下滑動 <i class="fas fa-mouse text-gray-300"></i>)</div>
+                        <div class="max-h-40 overflow-y-auto text-left space-y-3 pr-2 custom-scrollbar flex-1">
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-book-reader mr-1 opacity-70"></i>質性人文</span>
+                                <span class="text-xs text-gray-600">繪本多議點、文學遊藝思、古典小說專題研究、用英文介紹台灣、士林好好玩、以文學之名游生命之海、閱讀思辨與表達、心理萬花筒</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-users mr-1 opacity-70"></i>社會科學</span>
+                                <span class="text-xs text-gray-600">陽明青年行 SDGs、教室外的公民課、媒體識讀與日常思辨、生活中的心理學、地理專題、公民觀察家</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-flask mr-1 opacity-70"></i>自然科學</span>
+                                <span class="text-xs text-gray-600">物理專題、化學專題、生物專題、地科專題</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-calculator mr-1 opacity-70"></i>數學與數據科學</span>
+                                <span class="text-xs text-gray-600">跨領域數學建模、跨領域系統分析、數學專題</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-robot mr-1 opacity-70"></i>科技領域</span>
+                                <span class="text-xs text-gray-600">資訊科技專題、機器人專題、人工智慧 AI 專題</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-palette mr-1 opacity-70"></i>文藝創作</span>
+                                <span class="text-xs text-gray-600">翻玩歷史玩轉世界、Fun手作酷玩藝</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-violet-700 text-xs block mb-0.5"><i class="fas fa-chart-line mr-1 opacity-70"></i>財經領域</span>
+                                <span class="text-xs text-gray-600">投資理財專題</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-violet-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-violet-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-violet-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-violet-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-violet-400 font-bold mb-1">能力培養</div>
                         <div class="text-sm font-bold text-violet-800"><i class="fas fa-microscope mr-1 text-violet-500"></i>研究能力</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-violet-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-violet-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-violet-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-violet-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto">
-                        <div class="text-xs text-violet-200 mb-1">最終成果</div>
-                        <div class="font-bold text-sm"><i class="fas fa-presentation-screen mr-1 text-yellow-300"></i>專題研究成果發表</div>
+                    <div class="w-full bg-violet-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto shrink-0">
+                        <div class="text-xs text-violet-200 mb-1">專題展演與競賽 (最終成果)</div>
+                        <div class="font-bold text-xs space-y-1">
+                            <div><i class="fas fa-presentation-screen mr-1 text-yellow-300"></i>專題成果 / 小論文發表</div>
+                            <div><i class="fas fa-trophy mr-1 text-yellow-300"></i>專題競賽 / AI成果 / 科展</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 高三階段 -->
-                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-purple-50 flex flex-col items-center">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-2 shadow-inner group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300 relative z-10">
+                <div class="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-5 border border-purple-50 flex flex-col items-center h-full">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-2 shadow-inner group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0">
                         <span class="text-2xl font-black">高三</span>
                     </div>
-                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest">學習階段</div>
+                    <div class="text-sm text-gray-400 font-bold mb-1 tracking-widest shrink-0">學習階段</div>
 
-                    <div class="h-6 flow-line-container my-1 text-purple-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-purple-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-purple-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-purple-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-purple-400 font-bold mb-1">課程主軸</div>
                         <div class="font-bold text-purple-900">成果整合</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-purple-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-purple-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1 shrink-0"></i>
 
                     <div class="w-full border border-gray-100 rounded-xl p-3 text-center relative z-10 bg-white">
                         <div class="text-xs text-gray-400 font-bold mb-2">課程內容</div>
                         <div class="text-sm text-gray-700">學習歷程整理<br>專題反思</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-purple-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-purple-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-purple-50 rounded-xl p-3 text-center relative z-10">
+                    <div class="w-full bg-purple-50 rounded-xl p-3 text-center relative z-10 shrink-0">
                         <div class="text-xs text-purple-400 font-bold mb-1">能力培養</div>
                         <div class="text-sm font-bold text-purple-800"><i class="fas fa-bullhorn mr-1 text-purple-500"></i>表達與升學準備能力</div>
                     </div>
 
-                    <div class="h-6 flow-line-container my-1 text-purple-300"><div class="flow-line"></div></div>
-                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1"></i>
+                    <div class="h-4 flow-line-container my-1 text-purple-300 shrink-0"><div class="flow-line"></div></div>
+                    <i class="fas fa-caret-down text-purple-200 -mt-2 mb-1 shrink-0"></i>
 
-                    <div class="w-full bg-purple-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto">
+                    <div class="w-full bg-purple-500 text-white rounded-xl p-3 text-center shadow-sm relative z-10 mt-auto shrink-0">
                         <div class="text-xs text-purple-200 mb-1">最終成果</div>
                         <div class="font-bold text-sm leading-tight"><i class="fas fa-folder-open mr-1 text-yellow-300"></i>學習歷程檔案 /<br>升學作品集</div>
                     </div>
