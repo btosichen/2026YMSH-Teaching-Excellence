@@ -38,7 +38,7 @@
       box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
     }
 
-    /* 隱藏滾動條但保持可滾動，確保在小螢幕上魚骨圖不斷行 */
+    /* 隱藏滾動條但保持可滾動 */
     .hide-scrollbar::-webkit-scrollbar {
       height: 8px;
     }
@@ -57,7 +57,7 @@
   <div class="max-w-[1400px] mx-auto bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/50 overflow-hidden backdrop-blur-sm">
     
     <!-- 1. Header & 上方 LIGHT 流程 -->
-    <div class="bg-gradient-to-r from-blue-100/50 via-purple-100/50 to-orange-100/50 p-8 border-b border-white/60">
+    <div class="bg-gradient-to-r from-blue-100/50 via-purple-100/50 to-orange-100/50 p-8 border-b border-white/60 relative z-20">
       <div class="text-center mb-8 animate-fade-in" style="animation-delay: 0.1s;">
         <h1 class="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2 drop-shadow-sm">
           跨域專題課程地圖
@@ -95,7 +95,8 @@
         
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
           <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-purple-500 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
-            <i data-lucide="tool" class="w-6 h-6"></i>
+            <!-- 修正：將 tool 改為 wrench 確保圖標可以穩定顯示 -->
+            <i data-lucide="wrench" class="w-6 h-6"></i>
           </div>
           <span class="font-bold text-slate-600 text-sm tracking-wider">H 淬鍊</span>
         </div>
@@ -110,8 +111,8 @@
       </div>
     </div>
 
-    <!-- 2. 中央主體：水平魚骨圖結構 -->
-    <div class="relative w-full overflow-x-auto hide-scrollbar py-24 px-8 md:px-16 min-w-[1024px]">
+    <!-- 2. 中央主體：水平魚骨圖結構 (修正重點：加入 h-[720px] 固定高度撐開空間) -->
+    <div class="relative w-full overflow-x-auto hide-scrollbar px-8 md:px-16 min-w-[1024px] h-[720px]">
       
       <!-- 中央主軸 (Spine) -->
       <div class="absolute top-1/2 left-8 right-8 h-4 -mt-2 rounded-full fishbone-spine z-0">
@@ -268,13 +269,10 @@
         </div>
 
       </div>
-      
-      <!-- 用於佔位的空 div，確保上下絕對定位的內容不會被裁切 -->
-      <div class="h-[350px]"></div>
     </div>
 
     <!-- 3. 下方 SEL 支持系統底座 -->
-    <div class="bg-teal-50/80 border-t border-teal-100 p-6 md:p-8 animate-fade-in" style="animation-delay: 1.1s;">
+    <div class="bg-teal-50/80 border-t border-teal-100 p-6 md:p-8 animate-fade-in relative z-20" style="animation-delay: 1.1s;">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto">
         
         <div class="flex items-center gap-4 bg-white px-6 py-3 rounded-2xl shadow-sm border border-teal-100">
