@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跨域探究學習地圖 - 魚骨圖結構</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+    }
+
+    /* 動畫定義 */
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes flow-light {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    .animate-fade-in {
+      animation: fade-in-up 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    /* 魚骨主幹的光流效果 */
+    .fishbone-spine {
+      background: linear-gradient(90deg, #4ade80, #3b82f6, #a855f7, #f97316, #4ade80);
+      background-size: 200% auto;
+      animation: flow-light 4s linear infinite;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    }
+
+    /* 隱藏滾動條但保持可滾動，確保在小螢幕上魚骨圖不斷行 */
+    .hide-scrollbar::-webkit-scrollbar {
+      height: 8px;
+    }
+    .hide-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .hide-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4 md:p-8 text-slate-800">
+
+  <div class="max-w-[1400px] mx-auto bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/50 overflow-hidden backdrop-blur-sm">
+    
+    <!-- 1. Header & 上方 LIGHT 流程 -->
+    <div class="bg-gradient-to-r from-blue-100/50 via-purple-100/50 to-orange-100/50 p-8 border-b border-white/60">
+      <div class="text-center mb-8 animate-fade-in" style="animation-delay: 0.1s;">
+        <h1 class="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2 drop-shadow-sm">
+          跨域專題課程地圖
+        </h1>
+        <p class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-widest">
+          探究力養成主軸 (LIGHT × PBL × SEL)
+        </p>
+      </div>
+
+      <!-- LIGHT 橫向流程條 -->
+      <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-blue-500 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+            <i data-lucide="compass" class="w-6 h-6"></i>
+          </div>
+          <span class="font-bold text-slate-600 text-sm tracking-wider">L 領航</span>
+        </div>
+        <i data-lucide="arrow-right" class="text-slate-300 w-5 h-5 hidden sm:block"></i>
+        
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-teal-500 group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300">
+            <i data-lucide="link" class="w-6 h-6"></i>
+          </div>
+          <span class="font-bold text-slate-600 text-sm tracking-wider">I 連結</span>
+        </div>
+        <i data-lucide="arrow-right" class="text-slate-300 w-5 h-5 hidden sm:block"></i>
+        
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-orange-500 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+            <i data-lucide="flame" class="w-6 h-6"></i>
+          </div>
+          <span class="font-bold text-slate-600 text-sm tracking-wider">G 點燃</span>
+        </div>
+        <i data-lucide="arrow-right" class="text-slate-300 w-5 h-5 hidden sm:block"></i>
+        
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-purple-500 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
+            <i data-lucide="tool" class="w-6 h-6"></i>
+          </div>
+          <span class="font-bold text-slate-600 text-sm tracking-wider">H 淬鍊</span>
+        </div>
+        <i data-lucide="arrow-right" class="text-slate-300 w-5 h-5 hidden sm:block"></i>
+        
+        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-rose-500 group-hover:scale-110 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
+            <i data-lucide="mic" class="w-6 h-6"></i>
+          </div>
+          <span class="font-bold text-slate-600 text-sm tracking-wider">T 展現</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 中央主體：水平魚骨圖結構 -->
+    <div class="relative w-full overflow-x-auto hide-scrollbar py-24 px-8 md:px-16 min-w-[1024px]">
+      
+      <!-- 中央主軸 (Spine) -->
+      <div class="absolute top-1/2 left-8 right-8 h-4 -mt-2 rounded-full fishbone-spine z-0">
+         <!-- 箭頭頭部 -->
+         <div class="absolute -right-2 top-1/2 -mt-4 w-0 h-0 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent border-l-[24px] border-l-orange-400 drop-shadow-md"></div>
+      </div>
+
+      <!-- 四個節點的 Grid -->
+      <div class="relative z-10 grid grid-cols-4 gap-4 h-full">
+        
+        <!-- ================= 節點 1: 國中 ================= -->
+        <div class="relative flex flex-col items-center animate-fade-in" style="animation-delay: 0.3s;">
+          <!-- 上半部：學習歷程 (左側魚骨) -->
+          <div class="absolute bottom-[calc(50%+40px)] w-64 bg-white p-5 rounded-2xl shadow-lg border border-green-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 z-20">
+            <div class="flex items-center gap-3 mb-3 pb-2 border-b border-green-50">
+              <div class="p-2 bg-green-100 text-green-600 rounded-lg"><i data-lucide="leaf" class="w-5 h-5"></i></div>
+              <h3 class="text-xl font-black text-green-700">國中</h3>
+            </div>
+            <ul class="space-y-2 text-slate-600 font-medium text-sm">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>問題導向學習</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>基礎探究</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>問題意識培養</li>
+            </ul>
+          </div>
+          
+          <!-- 上斜線 (Rib) -->
+          <div class="absolute bottom-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-t from-green-400 to-green-200 origin-bottom transform -rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <!-- 主軸節點 -->
+          <div class="absolute top-1/2 left-1/2 w-8 h-8 -mt-4 -ml-4 rounded-full bg-white border-4 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.4)] z-30 flex items-center justify-center">
+            <div class="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+          </div>
+
+          <!-- 下斜線 (Rib) -->
+          <div class="absolute top-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-b from-green-400 to-green-200 origin-top transform rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <!-- 下半部：能力輸出 (右側魚骨) -->
+          <div class="absolute top-[calc(50%+40px)] w-56 flex flex-col gap-2 z-20">
+            <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-yellow-500"></i> 探究力
+            </div>
+            <div class="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="flame" class="w-4 h-4 text-rose-500"></i> 韌性力
+            </div>
+            <div class="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="mic" class="w-4 h-4 text-blue-500"></i> 表達力
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 節點 2: 高一 ================= -->
+        <div class="relative flex flex-col items-center animate-fade-in" style="animation-delay: 0.5s;">
+          <div class="absolute bottom-[calc(50%+40px)] w-64 bg-white p-5 rounded-2xl shadow-lg border border-blue-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 z-20">
+            <div class="flex items-center gap-3 mb-3 pb-2 border-b border-blue-50">
+              <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i data-lucide="search" class="w-5 h-5"></i></div>
+              <h3 class="text-xl font-black text-blue-700">高一</h3>
+            </div>
+            <ul class="space-y-2 text-slate-600 font-medium text-sm">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>閱讀理解與分析</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>數據分析與解讀</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>研究方法建構</li>
+            </ul>
+          </div>
+          
+          <div class="absolute bottom-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-t from-blue-400 to-blue-200 origin-bottom transform -rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-1/2 left-1/2 w-8 h-8 -mt-4 -ml-4 rounded-full bg-white border-4 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.4)] z-30 flex items-center justify-center">
+            <div class="w-2.5 h-2.5 bg-blue-500 rounded-full"></div>
+          </div>
+
+          <div class="absolute top-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-b from-blue-400 to-blue-200 origin-top transform rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-[calc(50%+40px)] w-56 flex flex-col gap-2 z-20">
+            <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-yellow-500"></i> 探究力
+            </div>
+            <div class="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="flame" class="w-4 h-4 text-rose-500"></i> 韌性力
+            </div>
+            <div class="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="mic" class="w-4 h-4 text-blue-500"></i> 表達力
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 節點 3: 高二 ================= -->
+        <div class="relative flex flex-col items-center animate-fade-in" style="animation-delay: 0.7s;">
+          <div class="absolute bottom-[calc(50%+40px)] w-64 bg-white p-5 rounded-2xl shadow-lg border border-purple-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 z-20">
+            <div class="flex items-center gap-3 mb-3 pb-2 border-b border-purple-50">
+              <div class="p-2 bg-purple-100 text-purple-600 rounded-lg"><i data-lucide="rocket" class="w-5 h-5"></i></div>
+              <h3 class="text-xl font-black text-purple-700">高二</h3>
+            </div>
+            <ul class="space-y-2 text-slate-600 font-medium text-sm">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-purple-400"></div>自主專題研究</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-purple-400"></div>跨域知識整合</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-purple-400"></div>階段成果發表</li>
+            </ul>
+          </div>
+          
+          <div class="absolute bottom-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-t from-purple-400 to-purple-200 origin-bottom transform -rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-1/2 left-1/2 w-8 h-8 -mt-4 -ml-4 rounded-full bg-white border-4 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.4)] z-30 flex items-center justify-center">
+            <div class="w-2.5 h-2.5 bg-purple-500 rounded-full"></div>
+          </div>
+
+          <div class="absolute top-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-b from-purple-400 to-purple-200 origin-top transform rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-[calc(50%+40px)] w-56 flex flex-col gap-2 z-20">
+            <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-yellow-500"></i> 探究力
+            </div>
+            <div class="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="flame" class="w-4 h-4 text-rose-500"></i> 韌性力
+            </div>
+            <div class="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="mic" class="w-4 h-4 text-blue-500"></i> 表達力
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= 節點 4: 高三 ================= -->
+        <div class="relative flex flex-col items-center animate-fade-in" style="animation-delay: 0.9s;">
+          <div class="absolute bottom-[calc(50%+40px)] w-64 bg-white p-5 rounded-2xl shadow-lg border border-orange-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 z-20">
+            <div class="flex items-center gap-3 mb-3 pb-2 border-b border-orange-50">
+              <div class="p-2 bg-orange-100 text-orange-600 rounded-lg"><i data-lucide="target" class="w-5 h-5"></i></div>
+              <h3 class="text-xl font-black text-orange-700">高三</h3>
+            </div>
+            <ul class="space-y-2 text-slate-600 font-medium text-sm">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>升學成果應用</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>學習歷程反思</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>研究興趣深化</li>
+            </ul>
+          </div>
+          
+          <div class="absolute bottom-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-t from-orange-400 to-orange-200 origin-bottom transform -rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-1/2 left-1/2 w-10 h-10 -mt-5 -ml-5 rounded-full bg-orange-500 border-4 border-white shadow-[0_0_20px_rgba(249,115,22,0.6)] z-30 flex items-center justify-center">
+             <i data-lucide="star" class="w-4 h-4 text-white fill-white"></i>
+          </div>
+
+          <div class="absolute top-[50%] left-1/2 w-[3px] h-[60px] bg-gradient-to-b from-orange-400 to-orange-200 origin-top transform rotate-[30deg] -translate-x-1/2 z-10 rounded-full"></div>
+
+          <div class="absolute top-[calc(50%+40px)] w-56 flex flex-col gap-2 z-20">
+            <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-yellow-500"></i> 探究力
+            </div>
+            <div class="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="flame" class="w-4 h-4 text-rose-500"></i> 韌性力
+            </div>
+            <div class="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm flex items-center gap-2 hover:scale-105 transition-transform">
+              <i data-lucide="mic" class="w-4 h-4 text-blue-500"></i> 表達力
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- 用於佔位的空 div，確保上下絕對定位的內容不會被裁切 -->
+      <div class="h-[350px]"></div>
+    </div>
+
+    <!-- 3. 下方 SEL 支持系統底座 -->
+    <div class="bg-teal-50/80 border-t border-teal-100 p-6 md:p-8 animate-fade-in" style="animation-delay: 1.1s;">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto">
+        
+        <div class="flex items-center gap-4 bg-white px-6 py-3 rounded-2xl shadow-sm border border-teal-100">
+          <div class="bg-teal-100 p-2 rounded-full text-teal-600">
+            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-teal-800 tracking-wider">SEL 支持系統</h2>
+            <p class="text-xs text-teal-600 font-medium mt-0.5">學習歷程的隱形翅膀</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 flex-1">
+          <div class="bg-white/80 backdrop-blur px-5 py-2.5 rounded-xl text-teal-700 font-bold text-sm shadow-sm border border-teal-100/50 flex items-center gap-2 hover:bg-teal-50 transition-colors">
+            <div class="w-2 h-2 rounded-full bg-teal-400"></div> 自我覺察
+          </div>
+          <div class="bg-white/80 backdrop-blur px-5 py-2.5 rounded-xl text-teal-700 font-bold text-sm shadow-sm border border-teal-100/50 flex items-center gap-2 hover:bg-teal-50 transition-colors">
+            <div class="w-2 h-2 rounded-full bg-teal-400"></div> 自我管理
+          </div>
+          <div class="bg-white/80 backdrop-blur px-5 py-2.5 rounded-xl text-teal-700 font-bold text-sm shadow-sm border border-teal-100/50 flex items-center gap-2 hover:bg-teal-50 transition-colors">
+            <div class="w-2 h-2 rounded-full bg-teal-400"></div> 人際互動
+          </div>
+          <div class="bg-white/80 backdrop-blur px-5 py-2.5 rounded-xl text-teal-700 font-bold text-sm shadow-sm border border-teal-100/50 flex items-center gap-2 hover:bg-teal-50 transition-colors">
+            <div class="w-2 h-2 rounded-full bg-teal-400"></div> 負責決策
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 初始化 Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
