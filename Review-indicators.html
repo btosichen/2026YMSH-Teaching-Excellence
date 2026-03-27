@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教學卓越獎審查指標</title>
+    <!-- 引入 Noto Sans TC 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 自訂 Tailwind 設定與動畫 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 確保背景填滿且只有亮色模式 */
+        body {
+            background-color: #f0f4f8; /* 備用背景色 */
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+    </style>
+</head>
+<!-- 漸層背景：淡藍 -> 淡紫 -->
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 min-h-screen text-gray-800 font-sans pb-12">
+
+    <!-- 區塊1：標題區 (Hero) -->
+    <header class="pt-16 pb-10 px-4 text-center max-w-5xl mx-auto animate-fade-in-up">
+        <div class="inline-flex items-center justify-center p-3 bg-white rounded-full shadow-sm mb-4">
+            <i data-lucide="award" class="w-8 h-8 text-indigo-500 mr-2"></i>
+            <i data-lucide="sparkles" class="w-6 h-6 text-amber-400"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 tracking-tight">
+            教學卓越獎審查指標
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 font-medium tracking-widest uppercase">
+            Evaluation Framework
+        </p>
+
+        <!-- 評審視角切換按鈕 -->
+        <div class="mt-8">
+            <button id="toggleBtn" onclick="toggleReviewerMode()" class="inline-flex items-center px-6 py-3 bg-white text-indigo-600 font-bold rounded-full shadow-md hover:shadow-lg transform transition-all hover:scale-105 border border-indigo-100 active:scale-95 focus:outline-none">
+                <i data-lucide="eye" id="toggleIcon" class="w-5 h-5 mr-2"></i>
+                <span id="toggleText">開啟評審視角</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 區塊2：兩大構面 -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+
+            <!-- 左卡：教學理念與發展過程 (40%) -->
+            <section class="space-y-6 animate-fade-in-up delay-100">
+                <div class="border-b-4 border-blue-400 pb-2 mb-6">
+                    <h2 class="text-2xl font-bold text-blue-800 flex items-center">
+                        <span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </span>
+                        教學理念與發展過程 (40%)
+                    </h2>
+                </div>
+
+                <!-- 子卡 1: 教學理念 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-50 p-3 rounded-xl mr-4 text-blue-500">
+                            <i data-lucide="compass" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">教學理念</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">學生為主體</span>
+                        <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">素養導向</span>
+                        <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">人文關懷</span>
+                        <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">結合政策與願景</span>
+                    </div>
+                    <!-- 評審視角 (預設隱藏) -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：是否清楚說明學生學習的轉變？理念如何真實扣合學校的發展願景？
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 子卡 2: 教學經營 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-cyan-50 p-3 rounded-xl mr-4 text-cyan-500">
+                            <i data-lucide="users" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">教學經營</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">適性發展</span>
+                        <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">良好學習環境</span>
+                        <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">親師生互動</span>
+                        <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">多元活動</span>
+                    </div>
+                    <!-- 評審視角 -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：班級經營的具體策略為何？是否有營造出讓學生安心試錯的支持性環境？
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 子卡 3: 團隊運作 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-400">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-50 p-3 rounded-xl mr-4 text-indigo-500">
+                            <i data-lucide="layers" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">團隊運作</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">跨域協作</span>
+                        <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">專業社群</span>
+                        <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">資源整合</span>
+                        <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">經驗傳承</span>
+                    </div>
+                    <!-- 評審視角 -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：團隊成員如何分工？是否有共備觀議課的實質產出與資源引進成效？
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 右卡：教學創新與學習表現 (60%) -->
+            <section class="space-y-6 animate-fade-in-up delay-200">
+                <div class="border-b-4 border-orange-400 pb-2 mb-6">
+                    <h2 class="text-2xl font-bold text-orange-600 flex items-center">
+                        <span class="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3">
+                            <i data-lucide="rocket" class="w-6 h-6"></i>
+                        </span>
+                        教學創新與學習表現 (60%)
+                    </h2>
+                </div>
+
+                <!-- 子卡 4: 教學創新 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-50 p-3 rounded-xl mr-4 text-orange-500">
+                            <i data-lucide="lightbulb" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">教學創新</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">創新課程</span>
+                        <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">符應趨勢</span>
+                        <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">適性教學</span>
+                        <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">主動學習</span>
+                    </div>
+                    <!-- 評審視角 -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：教學方法「新」在哪裡？是否成功引發學生的求知慾及主動探究能力？
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 子卡 5: 學習表現 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-400">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-rose-50 p-3 rounded-xl mr-4 text-rose-500">
+                            <i data-lucide="trending-up" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">學習表現</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-medium">學習動機提升</span>
+                        <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-medium">核心素養強化</span>
+                        <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-medium">自主學習</span>
+                        <span class="bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-medium">團隊合作</span>
+                    </div>
+                    <!-- 評審視角 -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：學生的成長是否有客觀證據（如作品、回饋）？核心素養的展現是否具體？
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 子卡 6: 成效評估 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-50 opacity-0 animate-fade-in-up delay-500">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-amber-50 p-3 rounded-xl mr-4 text-amber-500">
+                            <i data-lucide="bar-chart" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">成效評估</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">多元評量</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">數據分析</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">課程調整</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">品質提升</span>
+                    </div>
+                    <!-- 評審視角 -->
+                    <div class="reviewer-note hidden mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                        <p class="text-amber-800 font-bold flex items-start text-sm">
+                            <i data-lucide="zoom-in" class="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"></i>
+                            評審看什麼：評量工具是否能真實反映學習成效？老師如何根據評量結果進行滾動式修正？
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 初始化 Icons 與 互動邏輯 -->
+    <script>
+        // 初始化 Lucide Icons
+        lucide.createIcons();
+
+        // 切換評審視角功能
+        let isReviewerMode = false;
+        
+        function toggleReviewerMode() {
+            isReviewerMode = !isReviewerMode;
+            
+            const btn = document.getElementById('toggleBtn');
+            const toggleText = document.getElementById('toggleText');
+            const notes = document.querySelectorAll('.reviewer-note');
+            
+            if (isReviewerMode) {
+                // 開啟模式：按鈕變色、文字改變、顯示區塊
+                btn.classList.remove('bg-white', 'text-indigo-600');
+                btn.classList.add('bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'border-transparent');
+                
+                // 更換 icon 為閉眼 (代表可關閉)
+                btn.innerHTML = `<i data-lucide="eye-off" class="w-5 h-5 mr-2"></i><span class="font-bold">關閉評審視角</span>`;
+                
+                // 顯示所有提示區塊
+                notes.forEach(note => {
+                    note.classList.remove('hidden');
+                    // 添加小動畫
+                    note.classList.add('animate-fade-in-up');
+                });
+                
+            } else {
+                // 關閉模式：還原按鈕、隱藏區塊
+                btn.classList.remove('bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-white', 'border-transparent');
+                btn.classList.add('bg-white', 'text-indigo-600');
+                
+                btn.innerHTML = `<i data-lucide="eye" class="w-5 h-5 mr-2"></i><span class="font-bold">開啟評審視角</span>`;
+                
+                notes.forEach(note => {
+                    note.classList.add('hidden');
+                    note.classList.remove('animate-fade-in-up');
+                });
+            }
+            
+            // 重新渲染新加入的 icon
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
